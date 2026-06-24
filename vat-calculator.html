@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>(function(){try{var t=localStorage.getItem("theme");if(t==="light")document.documentElement.setAttribute("data-theme","light");}catch(e){}})();</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VAT Calculator — Add or Remove VAT Instantly (Free) | Cloistr</title>
+<meta name="description" content="Free VAT calculator. Add VAT to a net price or remove VAT from a gross price in one click. Any rate, instant net, VAT and gross amounts. No signup.">
+<link rel="canonical" href="https://cloistr.io/vat-calculator.html">
+<meta property="og:title" content="VAT Calculator — Add or Remove VAT Instantly (Free) | Cloistr">
+<meta property="og:description" content="Free VAT calculator. Add VAT to a net price or remove VAT from a gross price in one click. Any rate, instant net, VAT and gross amounts. No signup.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;450;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0e1116;
+  --surface:#161b22;
+  --surface-2:#1c232d;
+  --border:#262e3a;
+  --border-hover:#3a4554;
+  --title:#ffffff;
+  --text:#ffffff;
+  --text-soft:#c5cdd8;
+  --text-dim:#9aa6b4;
+  --text-faint:#697585;
+  --accent:#3ddc97;
+  --accent-strong:#3ddc97;
+  --accent-text:#0e1116;
+  --radius:14px;
+  --radius-sm:10px;
+  --font-display:'Space Grotesk',sans-serif;
+  --font-body:'Inter',sans-serif;
+}
+[data-theme="light"]{
+  --bg:#f6f8fb;
+  --surface:#ffffff;
+  --surface-2:#eef2f7;
+  --border:#e2e8f0;
+  --border-hover:#cbd5e1;
+  --title:#0d1320;
+  --text:#0d1320;
+  --text-soft:#374151;
+  --text-dim:#5b6675;
+  --text-faint:#94a1b2;
+  --accent:#0ea271;
+  --accent-strong:#0a8f5f;
+  --accent-text:#ffffff;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text-soft);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh;transition:background .2s,color .2s}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+
+h1,h2,h3,.logo,.card h3,.tool-head h1,.tool-head h2{color:var(--title)}
+
+.nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:20px;padding:14px 28px;background:var(--bg);border-bottom:1px solid var(--border)}
+.logo{font-family:var(--font-display);font-weight:700;font-size:19px;letter-spacing:-.02em;display:flex;align-items:center;gap:9px}
+.logo .dot{width:11px;height:11px;border-radius:3px;background:var(--accent);display:inline-block;transform:rotate(45deg)}
+.search{flex:1;max-width:420px;margin:0 auto;display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--border);border-radius:99px;padding:9px 16px;transition:border-color .15s}
+.search:focus-within{border-color:var(--border-hover)}
+.search svg{flex-shrink:0;color:var(--text-faint)}
+.search input{flex:1;border:none;background:none;outline:none;color:var(--text);font-size:14px;font-family:inherit}
+.search input::placeholder{color:var(--text-faint)}
+.nav-right{display:flex;align-items:center;gap:12px}
+.pill{font-size:12px;font-weight:500;color:var(--accent-strong);background:color-mix(in srgb,var(--accent) 12%,transparent);padding:5px 12px;border-radius:99px;border:1px solid color-mix(in srgb,var(--accent) 24%,transparent)}
+.theme-switch{display:inline-flex;background:var(--surface);border:1px solid var(--border);border-radius:99px;padding:3px;gap:2px}
+.ts-opt{width:34px;height:30px;border:none;background:none;border-radius:99px;color:var(--text-faint);display:flex;align-items:center;justify-content:center;transition:all .15s;cursor:pointer}
+.ts-opt svg{width:16px;height:16px}
+.ts-opt:hover{color:var(--text)}
+.ts-opt.on{background:var(--accent);color:var(--accent-text)}
+
+.hero{max-width:780px;margin:0 auto;padding:64px 28px 40px;text-align:center}
+.hero .eyebrow{font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-strong);margin-bottom:18px}
+.hero h1{font-family:var(--font-display);font-size:clamp(34px,6vw,54px);font-weight:600;line-height:1.05;letter-spacing:-.03em;margin-bottom:18px}
+.hero h1 em{font-style:normal;color:var(--accent-strong)}
+.hero p{font-size:17px;color:var(--text-dim);max-width:480px;margin:0 auto 28px}
+.hero-stats{display:flex;justify-content:center;gap:36px;flex-wrap:wrap;font-size:13px;color:var(--text-faint)}
+.hero-stats b{color:var(--title);font-weight:600;font-family:var(--font-display)}
+
+.cats{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;padding:8px 28px 36px;max-width:900px;margin:0 auto}
+.cat{font-size:13px;font-weight:450;color:var(--text-dim);background:var(--surface);border:1px solid var(--border);padding:7px 16px;border-radius:99px;transition:all .15s}
+.cat:hover{border-color:var(--border-hover);color:var(--text)}
+.cat.active{background:var(--accent);color:var(--accent-text);border-color:var(--accent);font-weight:500}
+
+.wrap{max-width:1080px;margin:0 auto;padding:0 28px 80px}
+.group-label{font-family:var(--font-display);font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--text-faint);text-transform:uppercase;margin:28px 0 14px;display:flex;align-items:center;gap:10px}
+.group-label::after{content:"";flex:1;height:1px;background:var(--border)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;transition:border-color .15s,transform .15s,background .15s;position:relative;text-align:left;width:100%;display:block}
+.card:hover{border-color:var(--border-hover);transform:translateY(-2px);background:var(--surface-2)}
+.card .ico{width:42px;height:42px;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.card .ico svg{width:22px;height:22px}
+.card h3{font-size:15px;font-weight:600;margin-bottom:4px;letter-spacing:-.01em}
+.card p{font-size:13px;color:var(--text-dim);line-height:1.5}
+.card .tag{position:absolute;top:16px;right:16px;font-size:10px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:3px 8px;border-radius:6px}
+.tag.new{background:color-mix(in srgb,var(--accent) 16%,transparent);color:var(--accent-strong)}
+.tag.hot{background:rgba(255,167,38,.16);color:#d98317}
+.card .arrow{position:absolute;bottom:18px;right:18px;color:var(--text-faint);opacity:0;transition:opacity .15s,transform .15s;transform:translateX(-4px)}
+.card:hover .arrow{opacity:1;transform:translateX(0)}
+.i-teal{background:rgba(61,220,151,.14);color:#0ea271}
+.i-blue{background:rgba(56,138,221,.14);color:#2f7fd1}
+.i-amber{background:rgba(239,159,39,.16);color:#c47d12}
+.i-green{background:rgba(99,153,34,.18);color:#5b8a1c}
+.i-purple{background:rgba(127,119,221,.16);color:#6b62d6}
+.i-pink{background:rgba(212,83,126,.16);color:#c44d77}
+.i-coral{background:rgba(216,90,48,.16);color:#cc5a30}
+.i-gray{background:rgba(120,135,155,.16);color:#5f6b7a}
+[data-theme="light"] .i-teal{color:#0a8f5f}
+
+.tool-main{max-width:720px;margin:0 auto;padding:32px 28px 80px}
+.crumb{font-size:13px;color:var(--text-faint);margin-bottom:24px;display:flex;gap:8px;align-items:center}
+.crumb a:hover{color:var(--text)}
+.crumb svg{width:14px;height:14px}
+.tool-head{display:flex;align-items:center;gap:16px;margin-bottom:10px}
+.tool-head .ico{width:50px;height:50px;border-radius:12px;display:flex;align-items:center;justify-content:center}
+.tool-head .ico svg{width:26px;height:26px}
+.tool-head h1{font-family:var(--font-display);font-size:30px;font-weight:600;letter-spacing:-.02em}
+.lead{color:var(--text-dim);font-size:16px;margin-bottom:28px}
+.panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px}
+.field{margin-bottom:20px}
+.field:last-child{margin-bottom:0}
+label{display:block;font-size:13px;font-weight:500;color:var(--text-dim);margin-bottom:8px}
+input[type=text],input[type=number],input[type=email],select,textarea{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px 14px;color:var(--text);font-size:15px;font-family:inherit;outline:none;transition:border-color .15s}
+input:focus,select:focus,textarea:focus{border-color:var(--accent)}
+.seg{display:flex;gap:8px;flex-wrap:wrap}
+.seg button{flex:1;min-width:130px;padding:10px;border-radius:var(--radius-sm);background:var(--bg);border:1px solid var(--border);color:var(--text-dim);font-size:13px;font-weight:500;transition:all .15s}
+.seg button.on{background:var(--accent);color:var(--accent-text);border-color:var(--accent)}
+.result{margin-top:24px;padding:24px;border-radius:var(--radius-sm);background:var(--bg);border:1px dashed var(--border-hover);text-align:center}
+.result .big{font-family:var(--font-display);font-size:36px;font-weight:600;color:var(--accent-strong);letter-spacing:-.02em}
+.result .lbl{font-size:13px;color:var(--text-faint);margin-top:4px}
+.breakdown{margin-top:16px;display:flex;flex-direction:column;gap:8px}
+.breakdown .line{display:flex;justify-content:space-between;font-size:14px;color:var(--text-dim)}
+.breakdown .line b{color:var(--title);font-weight:600}
+
+.content{margin-top:48px;max-width:680px}
+.content h2{font-family:var(--font-display);font-size:22px;font-weight:600;margin:40px 0 14px;letter-spacing:-.01em}
+.content h3{font-size:17px;font-weight:600;margin:24px 0 8px}
+.content p{color:var(--text-soft);margin-bottom:14px}
+.content ul,.content ol{color:var(--text-soft);margin:0 0 16px 22px}
+.content li{margin-bottom:6px}
+.content code{background:var(--surface-2);border:1px solid var(--border);border-radius:6px;padding:2px 7px;font-size:14px;color:var(--accent-strong);font-family:var(--font-display)}
+.faq{margin-top:6px}
+.faq-item{border-top:1px solid var(--border)}
+.faq-item summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:14px;padding:18px 0;font-size:16px;font-weight:500;color:var(--title)}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary:hover{color:var(--accent-strong)}
+.faq-plus{flex-shrink:0;width:24px;height:24px;border:1px solid var(--border);border-radius:6px;display:flex;align-items:center;justify-content:center;color:var(--text-dim);font-size:18px;line-height:1;transition:transform .2s,color .2s,border-color .2s}
+.faq-item[open] .faq-plus{transform:rotate(45deg);color:var(--accent-strong);border-color:var(--accent-strong)}
+.faq-item > p{margin:0 0 18px;color:var(--text-dim)}
+.related{margin-top:48px}
+.related h2{font-family:var(--font-display);font-size:18px;font-weight:600;margin-bottom:16px}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.related a{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 16px;font-size:14px;font-weight:500;color:var(--title);transition:border-color .15s}
+.related a:hover{border-color:var(--border-hover)}
+
+footer{border-top:1px solid var(--border);padding:32px 28px;text-align:center;color:var(--text-faint);font-size:13px}
+footer .logo{justify-content:center;margin-bottom:10px;font-size:16px}
+
+@media(max-width:640px){
+  .search{max-width:none;order:4;flex-basis:100%;margin:6px 0 0}
+  .nav{flex-wrap:wrap}
+  .hero{padding-top:44px}
+}
+
+.meta-date{font-size:12px;color:var(--text-faint);margin:-18px 0 24px}
+.quick-answer{background:color-mix(in srgb,var(--accent) 10%,transparent);border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);border-radius:var(--radius-sm);padding:16px 18px;margin:0 0 28px}
+.quick-answer .qa-label{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.09em;margin-bottom:7px;font-family:var(--font-display);color:var(--accent-strong);font-weight:600}
+.quick-answer p{margin:0;color:var(--text-soft);font-size:15px}
+.quick-answer code{background:var(--surface-2);border:1px solid var(--border);border-radius:5px;padding:1px 6px;font-size:13.5px;color:var(--accent-strong);font-family:var(--font-display)}
+.key-points{list-style:none;margin:0 0 14px!important;padding:0}
+.key-points li{position:relative;padding-left:24px;margin-bottom:8px;color:var(--text-soft)}
+.key-points li::before{content:"";position:absolute;left:0;top:9px;width:7px;height:7px;border-radius:2px;background:var(--accent);transform:rotate(45deg)}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Cloistr","url":"https://cloistr.io/"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"VAT calculator","url":"https://cloistr.io/vat-calculator.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://cloistr.io/"},{"@type":"ListItem","position":2,"name":"VAT calculator","item":"https://cloistr.io/vat-calculator.html"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I add VAT to a price?","acceptedAnswer":{"@type":"Answer","text":"Multiply the net price by one plus the VAT rate. For example, 100 at 20 percent becomes 120. The calculator does this when you choose Add VAT."}},{"@type":"Question","name":"How do I remove VAT from a gross price?","acceptedAnswer":{"@type":"Answer","text":"Divide the gross price by one plus the VAT rate. For example, 120 at 20 percent becomes 100 net plus 20 VAT. Choose Remove VAT."}},{"@type":"Question","name":"Is this VAT calculator free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is completely free, needs no signup, and runs entirely in your browser."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"How to calculate VAT","step":[{"@type":"HowToStep","position":1,"name":"Enter the amount","text":"Type the price you are working with."},{"@type":"HowToStep","position":2,"name":"Set the VAT rate","text":"Enter the rate that applies, such as 20 percent."},{"@type":"HowToStep","position":3,"name":"Choose add or remove","text":"Pick Add VAT for a net price or Remove VAT for a tax-inclusive price."},{"@type":"HowToStep","position":4,"name":"Read the result","text":"See the net, VAT and gross amounts instantly."}]}</script>
+</head>
+<body>
+<nav class="nav">
+<a class="logo" href="/"><span class="dot"></span>Cloistr</a>
+<div class="search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><input id="searchInput" placeholder="Search tools…" oninput="if(window.filterTools)filterTools(this.value)" onfocus="if(!window.filterTools)location.href='/'"></div>
+<div class="nav-right"><div class="theme-switch" role="group" aria-label="Theme"><button class="ts-opt" data-mode="light" onclick="setTheme('light')" aria-label="Light theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button><button class="ts-opt" data-mode="dark" onclick="setTheme('dark')" aria-label="Dark theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg></button></div><span class="pill">100% free</span></div>
+</nav>
+<main class="tool-main">
+<nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg><span>VAT calculator</span></nav>
+<div class="tool-head"><div class="ico i-teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14l6-6"/><circle cx="9.5" cy="8.5" r="1.5"/><circle cx="14.5" cy="13.5" r="1.5"/><rect x="3" y="3" width="18" height="18" rx="3"/></svg></div><h1>VAT calculator</h1></div>
+<p class="lead">Add VAT to a net price or strip VAT out of a gross price — at any rate, instantly.</p>
+<p class="meta-date">Last updated June 2026</p>
+<div class="quick-answer"><span class="qa-label">Did you know?</span><p>To add VAT, multiply the net price by one plus the rate: <code>gross = net &times; (1 + rate)</code>. To remove VAT, divide the gross price by one plus the rate: <code>net = gross &divide; (1 + rate)</code>. Example: 100 + 20% VAT = 120.</p></div>
+<div class="panel"><div class="field"><label for="amt">Amount</label><input type="number" id="amt" value="100" oninput="calcVat()"></div><div class="field"><label for="rate">VAT rate (%)</label><input type="number" id="rate" value="20" oninput="calcVat()"></div><div class="field"><label>Mode</label><div class="seg" id="mode"><button class="on" onclick="setVat('add')">Add VAT (net &rarr; gross)</button><button onclick="setVat('remove')">Remove VAT (gross &rarr; net)</button></div></div><div class="result"><div class="big" id="total">&euro;120.00</div><div class="lbl" id="lbl">Gross amount</div><div class="breakdown"><div class="line"><span>Net</span><b id="net">&euro;100.00</b></div><div class="line"><span>VAT</span><b id="vat">&euro;20.00</b></div></div></div></div>
+<article class="content"><h2>What this VAT calculator does</h2><ul class="key-points"><li>Adds VAT to a net (pre-tax) price to give the gross total your customer pays.</li><li>Removes VAT from a gross (tax-inclusive) price to reveal the underlying net amount.</li><li>Works with any VAT rate, not just the standard 20%.</li></ul><h2>How to calculate VAT</h2><p>To add VAT, multiply the net amount by one plus the rate: <code>gross = net &times; (1 + rate)</code>. So 100 at 20% becomes <code>100 &times; 1.20 = 120</code>.</p><p>To remove VAT, divide the gross amount by one plus the rate: <code>net = gross &divide; (1 + rate)</code>. So 120 at 20% becomes <code>120 &divide; 1.20 = 100</code>, leaving 20 of VAT.</p><h2>Frequently asked questions</h2><details class="faq-item"><summary>How do I add VAT to a price?<span class="faq-plus" aria-hidden="true">+</span></summary><p>Multiply the net price by one plus the rate and the gross total appears. Pick &ldquo;Add VAT&rdquo;.</p></details><details class="faq-item"><summary>How do I remove VAT from a gross price?<span class="faq-plus" aria-hidden="true">+</span></summary><p>Divide the gross price by one plus the rate. Pick &ldquo;Remove VAT&rdquo;.</p></details><details class="faq-item"><summary>Is this calculator free?<span class="faq-plus" aria-hidden="true">+</span></summary><p>Yes &mdash; completely free, no signup, and it runs entirely in your browser.</p></details></article>
+<section class="content"><h2>Frequently asked questions</h2><div class="faq"><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false"><span>How do I add VAT to a price?</span><span class="faq-plus" aria-hidden="true"></span></button><div class="faq-a"><p>Multiply the net price by one plus the VAT rate. For example, 100 at 20 percent becomes 120. The calculator does this when you choose Add VAT.</p></div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false"><span>How do I remove VAT from a gross price?</span><span class="faq-plus" aria-hidden="true"></span></button><div class="faq-a"><p>Divide the gross price by one plus the VAT rate. For example, 120 at 20 percent becomes 100 net plus 20 VAT. Choose Remove VAT.</p></div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false"><span>Is this VAT calculator free?</span><span class="faq-plus" aria-hidden="true"></span></button><div class="faq-a"><p>Yes. It is completely free, needs no signup, and runs entirely in your browser.</p></div></div></div></section>
+<section class="related"><h2>Related tools</h2><div class="related-grid"><a href="currency-converter.html">Currency converter →</a><a href="loan-calculator.html">Loan calculator →</a><a href="profit-margin-calculator.html">Profit margin calculator →</a></div></section>
+</main>
+<footer><div class="logo"><span class="dot"></span>Cloistr</div><div>Built for speed. Hosted free. Open to ideas.</div></footer>
+<script>
+const fmt=n=>new Intl.NumberFormat('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}).format(n);let vatMode='add';function setVat(m){vatMode=m;document.querySelectorAll('#mode button').forEach((b,i)=>b.classList.toggle('on',(m==='add')===(i===0)));calcVat()}function calcVat(){const amt=parseFloat(document.getElementById('amt').value)||0,rate=(parseFloat(document.getElementById('rate').value)||0)/100;let net,vat;if(vatMode==='add'){net=amt;vat=amt*rate;document.getElementById('lbl').textContent='Gross amount';document.getElementById('total').textContent='\u20ac'+fmt(net+vat)}else{net=amt/(1+rate);vat=amt-net;document.getElementById('lbl').textContent='Net amount';document.getElementById('total').textContent='\u20ac'+fmt(net)}document.getElementById('net').textContent='\u20ac'+fmt(net);document.getElementById('vat').textContent='\u20ac'+fmt(vat)}calcVat();
+function toggleFaq(b){var i=b.parentElement;i.classList.toggle("open");b.setAttribute("aria-expanded",i.classList.contains("open"))}
+function setTheme(mode){if(mode==='light'){document.documentElement.setAttribute('data-theme','light')}else{document.documentElement.removeAttribute('data-theme')}try{localStorage.setItem('theme',mode)}catch(e){}updateThemeSwitch();}function updateThemeSwitch(){var mode=document.documentElement.getAttribute('data-theme')==='light'?'light':'dark';document.querySelectorAll('.ts-opt').forEach(function(b){b.classList.toggle('on',b.dataset.mode===mode)});}updateThemeSwitch();
+</script>
+</body>
+</html>
