@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cloistr — Free online tools that just work</title>
-<meta name="description" content="Free online tools: VAT calculator, invoice generator, freelance tax estimator, break-even calculator, password generator and more. No signup.">
+<meta name="description" content="Free online tools for freelancers and small businesses: VAT calculator, invoice generator, freelance tax estimator, break-even calculator, password generator and more.">
 <link rel="canonical" href="https://cloistr.io/">
 <meta property="og:title" content="Cloistr — Free online tools that just work">
 <meta property="og:type" content="website">
@@ -146,8 +146,8 @@ input:focus,select:focus,textarea:focus{border-color:var(--accent)}
 .faq-item summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:14px;padding:18px 0;font-size:16px;font-weight:500;color:var(--title)}
 .faq-item summary::-webkit-details-marker{display:none}
 .faq-item summary:hover{color:var(--accent-strong)}
-.faq-plus{flex-shrink:0;width:24px;height:24px;border:1px solid var(--border);border-radius:6px;display:flex;align-items:center;justify-content:center;color:var(--text-dim);font-size:18px;line-height:1;transition:transform .2s,color .2s,border-color .2s}
-.faq-item[open] .faq-plus{transform:rotate(45deg);color:var(--accent-strong);border-color:var(--accent-strong)}
+.faq-plus{flex-shrink:0;width:26px;height:26px;border:1.5px solid var(--border);border-radius:7px;display:flex;align-items:center;justify-content:center;color:var(--text-dim);transition:transform .2s,color .15s,border-color .15s}
+.faq-item[open] summary .faq-plus{transform:rotate(90deg);color:var(--accent-strong);border-color:var(--accent-strong)}
 .faq-item > p{margin:0 0 18px;color:var(--text-dim)}
 .related{margin-top:48px}
 .related h2{font-family:var(--font-display);font-size:18px;font-weight:600;margin-bottom:16px}
@@ -172,16 +172,177 @@ footer .logo{justify-content:center;margin-bottom:10px;font-size:16px}
 .key-points{list-style:none;margin:0 0 14px!important;padding:0}
 .key-points li{position:relative;padding-left:24px;margin-bottom:8px;color:var(--text-soft)}
 .key-points li::before{content:"";position:absolute;left:0;top:9px;width:7px;height:7px;border-radius:2px;background:var(--accent);transform:rotate(45deg)}
+/* HOW IT WORKS */
+.how-section{padding:60px 28px;border-top:1px solid var(--border)}
+.how-inner{max-width:900px;margin:0 auto}
+.section-eyebrow{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-strong);margin-bottom:10px}
+.section-title{font-family:var(--font-display);font-size:clamp(22px,4vw,32px);font-weight:600;color:var(--title);margin-bottom:36px;letter-spacing:-.02em}
+.how-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px}
+.how-step{padding:24px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius)}
+.how-num{font-family:var(--font-display);font-size:28px;font-weight:700;color:var(--accent);margin-bottom:12px;letter-spacing:-.02em}
+.how-step h3{font-size:16px;font-weight:600;color:var(--title);margin-bottom:8px}
+.how-step p{font-size:14px;color:var(--text-dim);line-height:1.6;margin:0}
+
+/* TRUST STRIP */
+.trust-strip{border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:20px 28px;background:var(--surface)}
+.trust-inner{max-width:900px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:center;gap:28px}
+.trust-item{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--text-dim)}
+.trust-item svg{color:var(--accent);flex-shrink:0}
+
+/* HOMEPAGE FAQ */
+.home-faq{padding:60px 28px 80px;border-top:1px solid var(--border)}
+.home-faq-list{max-width:680px}
+.home-faq-list .faq-item:last-child{border-bottom:1px solid var(--border)}
+
+@media(max-width:640px){
+  .how-section,.home-faq{padding:40px 20px}
+  .trust-strip{padding:16px 20px}
+  .trust-inner{gap:16px}
+}
+
+/* NAV STRIP */
+.nav-strip{width:100%;border-bottom:1px solid var(--border);background:var(--surface)}
+.nav-strip-inner{max-width:1080px;margin:0 auto;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;padding:0 28px;min-height:40px}
+.feat-pill{display:flex;align-items:center;gap:7px;padding:10px 18px;font-size:12px;font-weight:500;color:var(--text-dim);white-space:nowrap;letter-spacing:.01em}
+.feat-pill svg{width:13px;height:13px;color:var(--accent);flex-shrink:0}
+.feat-divider{width:1px;height:14px;background:var(--border);flex-shrink:0}
+@media(max-width:640px){.feat-divider{display:none}.feat-pill{padding:8px 10px;font-size:11px}}
+
+/* FOOTER */
+.site-footer{border-top:1px solid var(--border);margin-top:0}
+.footer-inner{max-width:1080px;margin:0 auto;padding:48px 28px 36px;display:flex;gap:60px;flex-wrap:wrap}
+.footer-brand{flex:1;min-width:220px;max-width:300px}
+.footer-tagline{font-size:13px;color:var(--text-faint);line-height:1.6;margin:12px 0 0}
+.footer-links{display:flex;gap:48px;flex-wrap:wrap}
+.footer-col{display:flex;flex-direction:column;gap:10px;min-width:160px}
+.footer-col-title{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--text-faint);margin-bottom:4px}
+.footer-col a{font-size:13px;color:var(--text-dim);text-decoration:none;transition:color .15s}
+.footer-col a:hover{color:var(--title)}
+.footer-bottom{border-top:1px solid var(--border);padding:18px 28px;max-width:1080px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:12px;color:var(--text-faint)}
+.footer-bottom-links{display:flex;gap:20px}
+.footer-bottom-links a{color:var(--text-faint);text-decoration:none;transition:color .15s}
+.footer-bottom-links a:hover{color:var(--text-dim)}
+@media(max-width:640px){
+  .footer-inner{padding:36px 20px 28px;gap:36px}
+  .footer-brand{max-width:100%}
+  .footer-bottom{padding:16px 20px;flex-direction:column;align-items:flex-start;gap:8px}
+}
+
+
+/* BLOG INDEX */
+.blog-main{max-width:980px;margin:0 auto;padding:48px 28px 80px}
+.blog-header{text-align:center;margin-bottom:48px}
+.blog-header h1{font-family:var(--font-display);font-size:clamp(28px,4vw,40px);font-weight:600;color:var(--title);margin:8px 0 14px;letter-spacing:-0.02em;line-height:1.15}
+.blog-header p{font-size:16px;color:var(--text-dim);max-width:540px;margin:0 auto}
+.blog-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.blog-card{display:block;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;text-decoration:none;transition:border-color .15s,transform .15s}
+.blog-card:hover{border-color:var(--border-hover);transform:translateY(-2px)}
+.blog-card-meta{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-strong);margin-bottom:12px}
+.blog-card h2{font-family:var(--font-display);font-size:18px;font-weight:600;color:var(--title);margin:0 0 8px;letter-spacing:-0.01em;line-height:1.3}
+.blog-card p{font-size:14px;color:var(--text-dim);line-height:1.55;margin:0}
+
+/* BLOG POST */
+.blog-post{max-width:720px;margin:0 auto;padding:32px 28px 80px}
+.post-header{margin-bottom:36px;padding-bottom:24px;border-bottom:1px solid var(--border)}
+.post-meta{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-strong);margin-bottom:12px}
+.post-header h1{font-family:var(--font-display);font-size:clamp(26px,4vw,38px);font-weight:600;color:var(--title);margin:0 0 16px;letter-spacing:-0.02em;line-height:1.15}
+.post-lead{font-size:17px;color:var(--text-dim);line-height:1.55;margin:0}
+.post-content{font-size:16px;color:var(--text-soft);line-height:1.75}
+.post-content p{margin:0 0 20px}
+.post-content h2{font-family:var(--font-display);font-size:22px;font-weight:600;color:var(--title);margin:40px 0 14px;letter-spacing:-0.01em}
+.post-content h3{font-family:var(--font-display);font-size:18px;font-weight:600;color:var(--title);margin:28px 0 10px;letter-spacing:-0.01em}
+.post-content ul{margin:0 0 20px;padding-left:22px}
+.post-content li{margin-bottom:8px}
+.post-content a{color:var(--accent-strong);text-decoration:underline;text-decoration-color:rgba(13,162,113,.4);text-underline-offset:3px}
+.post-content a:hover{text-decoration-color:var(--accent-strong)}
+.post-cta{margin-top:40px;padding:28px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);text-align:center}
+.post-cta h3{font-family:var(--font-display);font-size:18px;font-weight:600;color:var(--title);margin:0 0 8px}
+.post-cta p{font-size:14px;color:var(--text-dim);margin:0 0 16px}
+.cta-btn{display:inline-block;padding:12px 24px;background:var(--accent);color:var(--accent-text);text-decoration:none;border-radius:10px;font-weight:600;font-size:14px;transition:opacity .15s}
+.cta-btn:hover{opacity:.9}
+
+/* BLOG INDEX */
+.blog-main{max-width:900px;margin:0 auto;padding:48px 28px 80px}
+.blog-header{margin-bottom:48px}
+.blog-title{font-family:var(--font-display);font-size:clamp(26px,4vw,38px);font-weight:600;color:var(--title);margin:8px 0 12px;letter-spacing:-.02em}
+.blog-subtitle{font-size:16px;color:var(--text-dim);line-height:1.6;max-width:520px;margin:0}
+.blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:20px}
+.blog-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px;transition:border-color .15s,transform .15s}
+.blog-card:hover{border-color:var(--border-hover);transform:translateY(-2px)}
+.blog-card-tag{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--accent-strong);margin-bottom:12px}
+.blog-card h2{font-family:var(--font-display);font-size:18px;font-weight:600;margin:0 0 10px;letter-spacing:-.01em;line-height:1.3}
+.blog-card h2 a{color:var(--title);text-decoration:none}
+.blog-card h2 a:hover{color:var(--accent-strong)}
+.blog-card p{font-size:14px;color:var(--text-dim);line-height:1.65;margin:0 0 16px}
+.blog-card-meta{display:flex;gap:14px;font-size:12px;color:var(--text-faint)}
+
+/* BLOG POST */
+.post-main{max-width:900px;margin:0 auto;padding:40px 28px 80px}
+.post-inner{max-width:680px}
+.post-tag{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--accent-strong);margin-bottom:12px}
+.post-title{font-family:var(--font-display);font-size:clamp(24px,4vw,38px);font-weight:600;color:var(--title);margin:0 0 14px;letter-spacing:-.02em;line-height:1.1}
+.post-meta{display:flex;gap:8px;font-size:13px;color:var(--text-faint);margin-bottom:32px}
+.post-quick-answer{background:var(--accent-bg);border:1px solid var(--accent-border);border-radius:var(--radius);padding:18px 20px;margin-bottom:36px}
+.post-quick-answer p{margin:0;font-size:15px;color:var(--soft);line-height:1.65}
+.post-body h2{font-family:var(--font-display);font-size:20px;font-weight:600;color:var(--title);margin:36px 0 12px;letter-spacing:-.01em}
+.post-body p{font-size:15px;color:var(--text-dim);line-height:1.75;margin:0 0 18px}
+.post-body .faq-item{margin-top:0}
+.post-cta{margin-top:48px;padding:28px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius)}
+.post-cta-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--accent-strong);margin-bottom:8px}
+.post-cta h3{font-family:var(--font-display);font-size:20px;font-weight:600;color:var(--title);margin:0 0 8px}
+.post-cta p{font-size:14px;color:var(--text-dim);margin:0 0 18px;line-height:1.6}
+
+@media(max-width:640px){
+  .blog-grid{grid-template-columns:1fr}
+  .blog-main,.post-main{padding:32px 20px 60px}
+}
+
+/* NAV BLOG LINK */
+.nav-blog{font-size:14px;font-weight:500;color:var(--text-dim);text-decoration:none;white-space:nowrap;padding:6px 10px;border-radius:8px;transition:color .15s,background .15s}
+.nav-blog:hover{color:var(--title);background:var(--surface-2)}
+
+/* CUSTOM NUMBER INPUT — hide native spinners globally */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+input[type=number]{-moz-appearance:textfield}
+
+/* CUSTOM SELECT — branded dropdown */
+select{-webkit-appearance:none;-moz-appearance:none;appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239aa6b4' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;cursor:pointer}
+
+/* CUSTOM RANGE SLIDER */
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:3px;outline:none;border:none;cursor:pointer;background:var(--border)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--accent);border:3px solid var(--bg);box-shadow:0 0 0 1.5px var(--accent);cursor:pointer}
+input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--accent);border:3px solid var(--bg);cursor:pointer}
+
+/* CUSTOM NUMBER INPUT WRAPPER — spin buttons */
+.num-wrap{display:flex;align-items:center;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg);transition:border-color .15s;overflow:hidden}
+.num-wrap:focus-within{border-color:var(--accent)}
+.num-wrap input{border:none;border-radius:0;background:transparent;flex:1;min-width:0;padding:12px 14px}
+.num-wrap input:focus{border-color:transparent}
+.num-btns{display:flex;flex-direction:column;border-left:1px solid var(--border);flex-shrink:0}
+.num-btn{width:32px;height:22px;border:none;background:var(--surface-2);color:var(--text-dim);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:10px;transition:all .12s;padding:0;line-height:1}
+.num-btn:first-child{border-bottom:1px solid var(--border)}
+.num-btn:hover{background:var(--accent);color:var(--accent-text)}
+
+/* PRIMARY BUTTON */
+.btn{display:block;width:100%;padding:13px 16px;border-radius:var(--radius-sm);border:none;background:var(--accent);color:var(--accent-text);font-size:15px;font-weight:600;cursor:pointer;font-family:inherit;margin-top:12px;text-align:center;transition:opacity .15s}
+.btn:hover{opacity:.88}
+.btn-ghost{background:var(--surface-2);color:var(--text);border:1px solid var(--border)}
+
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Cloistr","url":"https://cloistr.io/"}</script>
 </head>
 <body>
+
 <nav class="nav">
   <a class="logo" href="/"><span class="dot"></span>Cloistr</a>
   <div class="search">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
     <input id="searchInput" placeholder="Search tools" oninput="filterTools(this.value)">
   </div>
+  <a class="nav-blog" href="blog.html">Blog</a>
   <div class="nav-right">
     <div class="theme-switch" role="group">
       <button class="ts-opt" data-mode="light" onclick="setTheme('light')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
@@ -191,118 +352,174 @@ footer .logo{justify-content:center;margin-bottom:10px;font-size:16px}
   </div>
 </nav>
 
+<div class="nav-strip">
+  <div class="nav-strip-inner">
+    <div class="feat-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg><span>Instant results</span></div>
+    <div class="feat-divider"></div>
+    <div class="feat-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span>Data stays in your browser</span></div>
+    <div class="feat-divider"></div>
+    <div class="feat-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><path d="M19 8v6M22 11h-6"/></svg><span>No account required</span></div>
+    <div class="feat-divider"></div>
+    <div class="feat-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg><span>Works on any device</span></div>
+  </div>
+</div>
+
 <section class="hero">
-  <div class="eyebrow">No signup &middot; No ads &middot; No nonsense</div>
+  <div class="eyebrow">No signup &middot; No downloads &middot; No nonsense</div>
   <h1>Small tools that <em>just work</em>.</h1>
-  <p>A growing collection of fast, free utilities for everyday tasks. Everything runs right in your browser.</p>
+  <p>A growing collection of fast, free utilities for freelancers, small businesses and everyday tasks. Everything runs right in your browser.</p>
   <div class="hero-stats">
-    <span><b id="toolCount">8</b> tools</span>
+    <span><b id="toolCount">10</b> tools</span>
     <span><b>0</b> sign-ups</span>
-    <span><b>&#8734;</b> free</span>
+    <span><b>100%</b> free</span>
   </div>
 </section>
 
-<div class="cats" id="cats"></div>
 <div class="wrap" id="toolGrid"></div>
 
-<footer>
-  <div class="logo"><span class="dot"></span>Cloistr</div>
-  <div>Built for speed. Hosted free. Open to ideas.</div>
+<section class="how-section">
+  <div class="how-inner">
+    <div class="section-eyebrow">How it works</div>
+    <h2 class="section-title">In and out in seconds</h2>
+    <div class="how-grid">
+      <div class="how-step">
+        <div class="how-num">01</div>
+        <h3>Pick a tool</h3>
+        <p>Browse the collection or search by name. Every tool is free and open &mdash; no account, no paywall.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-num">02</div>
+        <h3>Enter your data</h3>
+        <p>Fill in your numbers, text or settings. Everything processes instantly in your browser &mdash; nothing is sent to a server.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-num">03</div>
+        <h3>Get your result</h3>
+        <p>Copy, download or use the output directly. Done. No steps, no friction, no follow-up emails.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="home-faq">
+  <div class="how-inner">
+    <div class="section-eyebrow">FAQ</div>
+    <h2 class="section-title">Frequently asked questions</h2>
+    <div class="home-faq-list" style="margin:0 auto">
+      <details class="faq-item"><summary>Are all tools really free?<span class="faq-plus" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span></summary><p>Yes. Every tool on Cloistr is completely free to use. No premium tier, no credit card, no trial period.</p></details>
+      <details class="faq-item"><summary>Do I need to create an account?<span class="faq-plus" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span></summary><p>No account, no registration, no email address. Just open a tool and use it.</p></details>
+      <details class="faq-item"><summary>Is my data safe?<span class="faq-plus" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span></summary><p>All calculations happen directly in your browser. Your data is never sent to our servers.</p></details>
+      <details class="faq-item"><summary>Can I use these tools for commercial purposes?<span class="faq-plus" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span></summary><p>Absolutely. Cloistr is designed for freelancers and small businesses. Use it for any purpose.</p></details>
+      <details class="faq-item"><summary>How often are new tools added?<span class="faq-plus" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span></summary><p>New tools are added regularly, focused on what freelancers and small businesses actually need.</p></details>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo"><span class="dot"></span>Cloistr</div>
+      <p class="footer-tagline">Fast, free tools for freelancers and small businesses. Everything runs in your browser.</p>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <div class="footer-col-title">Company</div>
+        <a href="blog.html">Blog</a>
+        <a href="#">About</a>
+        <a href="#">Privacy policy</a>
+        <a href="#">Terms of use</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Cloistr. All rights reserved.</span>
+  </div>
 </footer>
 
 <script>
-var TOOLS=[
-{slug:"vat-calculator",name:"VAT calculator",desc:"Add or remove VAT, get net and gross instantly.",cat:"Finance",color:"teal",tag:"hot",icon:"tax"},
-{slug:"invoice-generator",name:"Invoice generator",desc:"Create a professional invoice in seconds, no account.",cat:"Finance",color:"blue",tag:"hot",icon:"sig"},
-{slug:"break-even-calculator",name:"Break-even calculator",desc:"Units and revenue needed to cover your fixed costs.",cat:"Finance",color:"green",tag:"new",icon:"margin"},
-{slug:"freelance-tax-estimator",name:"Freelance tax estimator",desc:"Quarterly tax estimates for self-employed workers.",cat:"Finance",color:"amber",tag:"new",icon:"calc"},
-{slug:"profit-margin-calculator",name:"Profit margin calculator",desc:"Cost, price, markup and margin in one place.",cat:"Finance",color:"green",tag:"",icon:"chart"},
-{slug:"word-counter",name:"Word counter",desc:"Words, characters, sentences and reading time.",cat:"Text",color:"coral",tag:"",icon:"text"},
-{slug:"contrast-checker",name:"Contrast checker",desc:"WCAG AA and AAA contrast ratio for any two colors.",cat:"Design",color:"blue",tag:"new",icon:"eye"},
-{slug:"password-generator",name:"Password generator",desc:"Strong, random, customizable passwords.",cat:"Utilities",color:"gray",tag:"",icon:"lock"}
+var TOOLS = [
+  {slug:"vat-calculator",        name:"VAT calculator",          desc:"Add or remove VAT, get net and gross instantly.",       color:"teal",   tag:"hot", icon:"tax"},
+  {slug:"currency-converter",    name:"Currency converter",      desc:"Live exchange rates for 18 major currencies.",          color:"blue",   tag:"new", icon:"currency"},
+  {slug:"invoice-generator",     name:"Invoice generator",       desc:"Create a professional invoice in seconds, no account.", color:"blue",   tag:"hot", icon:"sig"},
+  {slug:"break-even-calculator", name:"Break-even calculator",   desc:"Units and revenue needed to cover your fixed costs.",   color:"green",  tag:"new", icon:"margin"},
+  {slug:"freelance-tax-estimator",name:"Freelance tax estimator",desc:"Quarterly tax estimates for self-employed workers.",    color:"amber",  tag:"new", icon:"calc"},
+  {slug:"profit-margin-calculator",name:"Profit margin calculator",desc:"Cost, price, markup and margin in one place.",        color:"green",  tag:"",   icon:"chart"},
+  {slug:"word-counter",          name:"Word counter",            desc:"Words, characters, sentences and reading time.",        color:"coral",  tag:"",   icon:"text"},
+  {slug:"contrast-checker",      name:"Contrast checker",        desc:"WCAG AA and AAA contrast ratio for any two colors.",   color:"blue",   tag:"new", icon:"eye"},
+  {slug:"qr-code-generator",     name:"QR code generator",       desc:"Turn any link or text into a scannable QR code.",      color:"teal",   tag:"new", icon:"qr"},
+  {slug:"password-generator",    name:"Password generator",      desc:"Strong, random, customizable passwords.",              color:"gray",   tag:"",   icon:"lock"}
 ];
 
-var PATHS={
-tax:'<path d="M9 14l6-6"/><circle cx="9.5" cy="8.5" r="1.5"/><circle cx="14.5" cy="13.5" r="1.5"/><rect x="3" y="3" width="18" height="18" rx="3"/>',
-sig:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
-margin:'<path d="M3 3v18h18M7 14l3-3 3 3 4-5"/>',
-calc:'<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 8h6M9 12h2M13 12h2M9 16h2M13 16h2"/>',
-chart:'<path d="M3 3v18h18M7 14l3-3 3 3 4-5"/>',
-text:'<path d="M4 6h16M4 12h16M4 18h10"/>',
-eye:'<circle cx="12" cy="12" r="3"/><path d="M3 12s3-7 9-7 9 7 9 7-3 7-9 7-9-7-9-7z"/>',
-lock:'<rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>'
+var PATHS = {
+  tax:      '<path d="M9 14l6-6"/><circle cx="9.5" cy="8.5" r="1.5"/><circle cx="14.5" cy="13.5" r="1.5"/><rect x="3" y="3" width="18" height="18" rx="3"/>',
+  currency: '<circle cx="12" cy="12" r="9"/><path d="M14.8 9a3 3 0 0 0-5.6 1.2c0 3 5.6 1.8 5.6 4.6a3 3 0 0 1-5.6 1.2M12 6v1m0 10v1"/>',
+  sig:      '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
+  margin:   '<path d="M3 3v18h18M7 14l3-3 3 3 4-5"/>',
+  calc:     '<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 8h6M9 12h2M13 12h2M9 16h2M13 16h2"/>',
+  chart:    '<path d="M3 3v18h18M7 14l3-3 3 3 4-5"/>',
+  text:     '<path d="M4 6h16M4 12h16M4 18h10"/>',
+  eye:      '<circle cx="12" cy="12" r="3"/><path d="M3 12s3-7 9-7 9 7 9 7-3 7-9 7-9-7-9-7z"/>',
+  qr:       '<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3M21 14v3M14 21h3M21 18v3"/>',
+  lock:     '<rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>'
 };
 
-var CATS=["All","Finance","Text","Design","Utilities"];
-var activeCat="All";
-
-function icon(name){return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+(PATHS[name]||"")+"</svg>";}
-
-function renderCats(){
-  var h="";
-  for(var i=0;i<CATS.length;i++){
-    var c=CATS[i];
-    h+='<button class="cat'+(c===activeCat?" active":"")+'" onclick="setCat(this.textContent)">'+c+"</button>";
-  }
-  document.getElementById("cats").innerHTML=h;
+function icon(name) {
+  return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' + (PATHS[name] || '') + '</svg>';
 }
 
-function setCat(c){activeCat=c;renderCats();renderGrid();}
-
-function renderGrid(filter){
-  filter=filter||"";
-  var f=filter.toLowerCase();
-  var list=[];
-  for(var i=0;i<TOOLS.length;i++){
-    var t=TOOLS[i];
-    if(activeCat!=="All"&&t.cat!==activeCat)continue;
-    if(f&&t.name.toLowerCase().indexOf(f)<0&&t.desc.toLowerCase().indexOf(f)<0&&t.cat.toLowerCase().indexOf(f)<0)continue;
-    list.push(t);
-  }
-  var groups={};
-  var order=[];
-  for(var i=0;i<list.length;i++){
-    var t=list[i];
-    if(!groups[t.cat]){groups[t.cat]=[];order.push(t.cat);}
-    groups[t.cat].push(t);
-  }
-  var h="";
-  for(var k=0;k<order.length;k++){
-    var cat=order[k];
-    h+='<div class="group-label">'+cat+'</div><div class="grid">';
-    var items=groups[cat];
-    for(var j=0;j<items.length;j++){
-      var t=items[j];
-      var tagSpan=t.tag?'<span class="tag '+t.tag+'">'+t.tag+"</span>":"";
-      h+='<a class="card" href="'+t.slug+'.html">'+tagSpan
-        +'<div class="ico i-'+t.color+'">'+icon(t.icon)+"</div>"
-        +"<h3>"+t.name+"</h3>"
-        +"<p>"+t.desc+"</p>"
-        +'<span class="arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>'
-        +"</a>";
+function renderGrid(filter) {
+  filter = filter || '';
+  var f = filter.toLowerCase();
+  var list = TOOLS.filter(function(t) {
+    if (!f) return true;
+    return t.name.toLowerCase().indexOf(f) > -1 || t.desc.toLowerCase().indexOf(f) > -1;
+  });
+  var h = '';
+  if (list.length === 0) {
+    h = '<div style="text-align:center;color:var(--text-faint);padding:60px 0">No tools match that search yet.</div>';
+  } else {
+    h = '<div class="grid">';
+    for (var i = 0; i < list.length; i++) {
+      var t = list[i];
+      var tagSpan = t.tag ? '<span class="tag ' + t.tag + '">' + t.tag + '</span>' : '';
+      h += '<a class="card" href="' + t.slug + '.html">'
+        + tagSpan
+        + '<div class="ico i-' + t.color + '">' + icon(t.icon) + '</div>'
+        + '<h3>' + t.name + '</h3>'
+        + '<p>' + t.desc + '</p>'
+        + '<span class="arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>'
+        + '</a>';
     }
-    h+="</div>";
+    h += '</div>';
   }
-  if(!list.length)h='<div style="text-align:center;color:var(--text-faint);padding:60px 0">No tools match that search yet.</div>';
-  document.getElementById("toolGrid").innerHTML=h;
+  document.getElementById('toolGrid').innerHTML = h;
 }
 
-function filterTools(v){renderGrid(v);}
+function filterTools(v) { renderGrid(v); }
 
-function setTheme(mode){
-  if(mode==="light")document.documentElement.setAttribute("data-theme","light");
-  else document.documentElement.removeAttribute("data-theme");
-  try{localStorage.setItem("theme",mode);}catch(e){}
+function setTheme(mode) {
+  if (mode === 'light') document.documentElement.setAttribute('data-theme', 'light');
+  else document.documentElement.removeAttribute('data-theme');
+  try { localStorage.setItem('theme', mode); } catch(e) {}
   updateThemeSwitch();
 }
-function updateThemeSwitch(){
-  var mode=document.documentElement.getAttribute("data-theme")==="light"?"light":"dark";
-  var btns=document.querySelectorAll(".ts-opt");
-  for(var i=0;i<btns.length;i++){btns[i].classList.toggle("on",btns[i].dataset.mode===mode);}
+function updateThemeSwitch() {
+  var mode = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+  var btns = document.querySelectorAll('.ts-opt');
+  for (var i = 0; i < btns.length; i++) {
+    btns[i].classList.toggle('on', btns[i].dataset.mode === mode);
+  }
 }
 
-document.getElementById("toolCount").textContent=TOOLS.length;
-renderCats();
+document.querySelector('.home-faq-list').addEventListener('click', function(e) {
+  var clicked = e.target.closest('details');
+  if (!clicked) return;
+  document.querySelectorAll('.home-faq-list details[open]').forEach(function(d) {
+    if (d !== clicked) d.removeAttribute('open');
+  });
+});
+
+document.getElementById('toolCount').textContent = TOOLS.length;
 renderGrid();
 updateThemeSwitch();
 </script>
