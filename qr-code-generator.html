@@ -163,6 +163,8 @@ footer .logo{justify-content:center;margin-bottom:10px;font-size:16px}
   .search{max-width:none;order:4;flex-basis:100%;margin:6px 0 0}
   .nav{flex-wrap:wrap}
   .hero{padding-top:44px}
+  .panel > div[style*="display:flex;gap:12px"]{flex-direction:column!important}
+  .panel{padding:20px!important}
 }
 
 .meta-date{font-size:12px;color:var(--text-faint);margin:-18px 0 24px}
@@ -332,6 +334,19 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 .btn:hover{opacity:.88}
 .btn-ghost{background:var(--surface-2);color:var(--text);border:1px solid var(--border)}
 
+/* DID YOU KNOW */
+.dyk{background:var(--accent-bg);border:1px solid var(--accent-border);border-radius:var(--radius);padding:16px 20px;margin-bottom:24px}
+.dyk-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--accent-strong);display:block;margin-bottom:8px;font-family:var(--font-display)}
+.dyk p{margin:0;font-size:14px;color:var(--soft);line-height:1.65}
+
+
+.dd-input{display:flex;align-items:center;justify-content:space-between;gap:8px;height:46px;padding:0 14px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg);color:var(--text);cursor:pointer;font-size:15px;font-family:inherit;transition:border-color .15s;user-select:none;box-sizing:border-box}
+.dd-input:hover{border-color:var(--accent)}
+.dd-input svg{color:var(--text-faint);flex-shrink:0;transition:transform .15s}
+.dd-popup{position:absolute;top:calc(100% + 6px);left:0;right:0;z-index:200;background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:6px;box-shadow:0 8px 32px rgba(0,0,0,.3)}
+.dd-opt{display:block;width:100%;text-align:left;padding:10px 12px;border:none;border-radius:8px;background:none;color:var(--text-dim);font-size:14px;font-family:inherit;cursor:pointer;transition:background .12s,color .12s}
+.dd-opt:hover{background:var(--surface-2);color:var(--title)}
+.dd-opt.on{background:var(--accent);color:var(--accent-text);font-weight:600}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Toolkit","url":"https://cloistr.io/"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QR code generator","url":"https://cloistr.io/qr-code-generator.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
@@ -351,13 +366,66 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 <div class="tool-head"><div class="ico i-teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3M21 14v.01M14 21h3M21 17v4"/></svg></div><h1>QR code generator</h1></div>
 <p class="lead">Turn any link, text or contact info into a scannable QR code.</p>
 <div class="quick-answer"><span class="qa-label">Did you know?</span><p>Type or paste any text or URL into the box above and a <strong>QR code is generated instantly</strong>. Pick the size and error correction level, then click <strong>Download as PNG</strong> to save it. Works for websites, contact cards, WiFi passwords, payment links and more.</p></div>
-<div class="panel"><div class="field"><label>Text or URL</label><textarea id="qr-input" rows="3" oninput="generateQR()" placeholder="Type or paste anything...">https://cloistr.io</textarea></div><div style="display:flex;gap:12px"><div class="field" style="flex:1"><label>Size</label><select id="qr-size" onchange="generateQR()" style="width:100%;padding:11px 14px;border-radius:10px;border:1.5px solid var(--border);background:var(--bg);color:var(--text);font-size:15px;font-family:inherit;outline:none;cursor:pointer"><option value="200">Small</option><option value="320" selected>Medium</option><option value="480">Large</option></select></div><div class="field" style="flex:1"><label>Error correction</label><select id="qr-ec" onchange="generateQR()" style="width:100%;padding:11px 14px;border-radius:10px;border:1.5px solid var(--border);background:var(--bg);color:var(--text);font-size:15px;font-family:inherit;outline:none;cursor:pointer"><option value="L">Low (7%)</option><option value="M" selected>Medium (15%)</option><option value="Q">Quartile (25%)</option><option value="H">High (30%)</option></select></div></div><div style="text-align:center;padding:24px;background:var(--bg);border:1.5px dashed var(--border-hover);border-radius:12px;margin-top:8px"><div id="qr-canvas-wrap" style="display:inline-block"></div></div><button class="btn" onclick="downloadQR()">Download as PNG</button></div>
+<div class="panel"><div class="field"><label>Text or URL</label><textarea id="qr-input" rows="3" oninput="generateQR()" placeholder="Type or paste anything...">https://cloistr.io</textarea></div><div style="display:flex;gap:12px">
+<div class="field" style="flex:1;margin-bottom:0;position:relative">
+  <label>Size</label>
+  <div class="dd-input" onclick="toggleDD(event,'dd-size')">
+    <span id="qr-size-label">Medium</span>
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+  </div>
+  <input type="hidden" id="qr-size" value="320">
+  <div id="dd-size" class="dd-popup" style="display:none">
+    <button type="button" class="dd-opt on" onclick="pickDD(event,'qr-size','200','Small')">Small</button>
+    <button type="button" class="dd-opt" onclick="pickDD(event,'qr-size','320','Medium')">Medium</button>
+    <button type="button" class="dd-opt" onclick="pickDD(event,'qr-size','480','Large')">Large</button>
+  </div>
+</div>
+<div class="field" style="flex:1;margin-bottom:0;position:relative">
+  <label>Error correction</label>
+  <div class="dd-input" onclick="toggleDD(event,'dd-ec')">
+    <span id="qr-ec-label">Medium (15%)</span>
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+  </div>
+  <input type="hidden" id="qr-ec" value="M">
+  <div id="dd-ec" class="dd-popup" style="display:none">
+    <button type="button" class="dd-opt" onclick="pickDD(event,'qr-ec','L','Low (7%)')">Low (7%)</button>
+    <button type="button" class="dd-opt on" onclick="pickDD(event,'qr-ec','M','Medium (15%)')">Medium (15%)</button>
+    <button type="button" class="dd-opt" onclick="pickDD(event,'qr-ec','Q','Quartile (25%)')">Quartile (25%)</button>
+    <button type="button" class="dd-opt" onclick="pickDD(event,'qr-ec','H','High (30%)')">High (30%)</button>
+  </div>
+</div>
+</div><div style="text-align:center;padding:24px;background:var(--bg);border:1.5px dashed var(--border-hover);border-radius:12px;margin-top:8px"><div id="qr-canvas-wrap" style="display:inline-block"></div></div><button class="btn" onclick="downloadQR()">Download as PNG</button></div>
 <article class="content"><h2>What is a QR code?</h2><ul class="key-points"><li>A QR code is a 2D barcode that stores text, links or other data, readable by any smartphone camera.</li><li>Originally invented in 1994 for tracking car parts, QR codes are now used everywhere: payments, menus, ticketing, marketing.</li><li>Higher error correction levels make the code more reliable when partially damaged or covered.</li></ul><h2>When to use which error correction level</h2><p><strong>Low (7%)</strong>: small physical sizes, simple use, perfect printing conditions.</p><p><strong>Medium (15%)</strong>: the default, works well for most digital and printed uses.</p><p><strong>High (30%)</strong>: outdoor signs, stickers that may peel, or codes with a logo overlay.</p></article>
 <section class="content"><h2>FAQ</h2><details class="faq-item"><summary>What can I put in a QR code?<span class="faq-plus" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span></summary><p>URLs, plain text, contact details (vCard format), WiFi credentials, payment links, app store links, calendar events and more.</p></details><details class="faq-item"><summary>Do QR codes expire?<span class="faq-plus" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span></summary><p>No. A QR code is just an image — it never expires. But if it links to a URL, the code stops working if that URL goes offline.</p></details><details class="faq-item"><summary>What is error correction?<span class="faq-plus" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span></summary><p>It is built-in redundancy that lets a QR code remain scannable even when partially damaged. Higher levels = more reliable but slightly larger code.</p></details></section>
 <section class="related"><h2>Related tools</h2><div class="related-grid"></div></section>
 </main>
 <footer class="site-footer"><div class="footer-inner"><div class="footer-brand"><div class="logo"><span class="dot"></span>Cloistr</div><p class="footer-tagline">Fast, free tools for freelancers and small businesses. Everything runs in your browser.</p></div><div class="footer-links"><div class="footer-col"><div class="footer-col-title">Company</div><a href="#">About</a><a href="#">Privacy policy</a><a href="#">Terms of use</a></div></div></div><div class="footer-bottom"><span>&copy; 2026 Cloistr. All rights reserved.</span></div></footer>
 <script>
+
+function toggleDD(e, ddId) {
+  e.stopPropagation();
+  document.querySelectorAll('.dd-popup').forEach(function(d) {
+    if (d.id !== ddId) d.style.display = 'none';
+  });
+  var dd = document.getElementById(ddId);
+  dd.style.display = dd.style.display === 'block' ? 'none' : 'block';
+}
+function pickDD(e, inputId, value, label) {
+  e.stopPropagation();
+  document.getElementById(inputId).value = value;
+  document.getElementById(inputId + '-label').textContent = label;
+  var popup = e.target.closest('.dd-popup');
+  popup.querySelectorAll('.dd-opt').forEach(function(o) { o.classList.remove('on'); });
+  e.target.classList.add('on');
+  popup.style.display = 'none';
+  generateQR();
+}
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.dd-popup') && !e.target.closest('.dd-input')) {
+    document.querySelectorAll('.dd-popup').forEach(function(d) { d.style.display = 'none'; });
+  }
+});
+
 function generateQR(){  var text = document.getElementById('qr-input').value || ' ';  var size = parseInt(document.getElementById('qr-size').value);  var ec = document.getElementById('qr-ec').value;  var wrap = document.getElementById('qr-canvas-wrap');  wrap.innerHTML = '';  if (typeof QRCode === 'undefined') {    var s = document.createElement('script');    s.src = 'https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js';    s.onload = function(){ generateQR(); };    document.head.appendChild(s);    return;  }  var ecLevels = {L: QRCode.CorrectLevel.L, M: QRCode.CorrectLevel.M, Q: QRCode.CorrectLevel.Q, H: QRCode.CorrectLevel.H};  new QRCode(wrap, { text: text, width: size, height: size, correctLevel: ecLevels[ec], colorDark: '#000000', colorLight: '#ffffff' });}function downloadQR(){  var canvas = document.querySelector('#qr-canvas-wrap canvas');  if (!canvas) return;  var link = document.createElement('a');  link.download = 'qrcode.png';  link.href = canvas.toDataURL('image/png');  link.click();}generateQR();
 function toggleFaq(b){var i=b.parentElement;i.classList.toggle("open");b.setAttribute("aria-expanded",i.classList.contains("open"))}
 function setTheme(mode){if(mode==='light'){document.documentElement.setAttribute('data-theme','light')}else{document.documentElement.removeAttribute('data-theme')}try{localStorage.setItem('theme',mode)}catch(e){}updateThemeSwitch();}function updateThemeSwitch(){var mode=document.documentElement.getAttribute('data-theme')==='light'?'light':'dark';document.querySelectorAll('.ts-opt').forEach(function(b){b.classList.toggle('on',b.dataset.mode===mode)});}updateThemeSwitch();
@@ -368,6 +436,7 @@ function setTheme(mode){if(mode==='light'){document.documentElement.setAttribute
   // Wrap all number inputs with custom spinner UI
   document.querySelectorAll('input[type=number]').forEach(function(inp){
     if(inp.closest('.num-wrap')) return;
+    if(inp.closest('#inv-items')) return;
     var wrap = document.createElement('div');
     wrap.className = 'num-wrap';
     inp.parentNode.insertBefore(wrap, inp);
@@ -375,14 +444,14 @@ function setTheme(mode){if(mode==='light'){document.documentElement.setAttribute
     var btns = document.createElement('div');
     btns.className = 'num-btns';
     var up = document.createElement('button');
-    up.className = 'num-btn'; up.type = 'button'; up.innerHTML = '&#9650;';
+    up.className = 'num-btn'; up.type = 'button'; up.innerHTML = '▲';
     up.addEventListener('click', function(){
       var step = parseFloat(inp.step)||1;
       inp.value = (parseFloat(inp.value||0)+step).toString();
       inp.dispatchEvent(new Event('input'));
     });
     var dn = document.createElement('button');
-    dn.className = 'num-btn'; dn.type = 'button'; dn.innerHTML = '&#9660;';
+    dn.className = 'num-btn'; dn.type = 'button'; dn.innerHTML = '▼';
     dn.addEventListener('click', function(){
       var step = parseFloat(inp.step)||1;
       inp.value = (parseFloat(inp.value||0)-step).toString();

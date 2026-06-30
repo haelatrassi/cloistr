@@ -315,3 +315,23 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 .btn{display:block;width:100%;padding:13px 16px;border-radius:var(--radius-sm);border:none;background:var(--accent);color:var(--accent-text);font-size:15px;font-weight:600;cursor:pointer;font-family:inherit;margin-top:12px;text-align:center;transition:opacity .15s}
 .btn:hover{opacity:.88}
 .btn-ghost{background:var(--surface-2);color:var(--text);border:1px solid var(--border)}
+
+/* DID YOU KNOW */
+.dyk{background:rgba(61,220,151,.08);border:1px solid rgba(61,220,151,.25);border-radius:var(--radius);padding:16px 20px;margin-bottom:24px}
+.dyk-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--accent-strong);display:block;margin-bottom:8px;font-family:var(--font-display)}
+.dyk p{margin:0;font-size:14px;color:var(--text-soft);line-height:1.65}
+
+/* CUSTOM DROPDOWN (replaces native select where full control is needed) */
+.dd-input{display:flex;align-items:center;justify-content:space-between;gap:8px;height:46px;padding:0 14px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg);color:var(--text);cursor:pointer;font-size:15px;font-family:inherit;transition:border-color .15s;user-select:none;box-sizing:border-box}
+.dd-input:hover{border-color:var(--accent)}
+.dd-input svg{color:var(--text-faint);flex-shrink:0;transition:transform .15s}
+.dd-popup{position:absolute;top:calc(100% + 6px);left:0;right:0;z-index:200;background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:6px;box-shadow:0 8px 32px rgba(0,0,0,.3)}
+.dd-opt{display:block;width:100%;text-align:left;padding:10px 12px;border:none;border-radius:8px;background:none;color:var(--text-dim);font-size:14px;font-family:inherit;cursor:pointer;transition:background .12s,color .12s}
+.dd-opt:hover{background:var(--surface-2);color:var(--title)}
+.dd-opt.on{background:var(--accent);color:var(--accent-text);font-weight:600}
+
+/* MOBILE: stack flex rows inside panels, tighten padding */
+@media(max-width:640px){
+  .panel > div[style*="display:flex;gap:12px"]{flex-direction:column!important}
+  .panel{padding:20px!important}
+}

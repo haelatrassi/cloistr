@@ -163,6 +163,8 @@ footer .logo{justify-content:center;margin-bottom:10px;font-size:16px}
   .search{max-width:none;order:4;flex-basis:100%;margin:6px 0 0}
   .nav{flex-wrap:wrap}
   .hero{padding-top:44px}
+  .panel > div[style*="display:flex;gap:12px"]{flex-direction:column!important}
+  .panel{padding:20px!important}
 }
 
 .meta-date{font-size:12px;color:var(--text-faint);margin:-18px 0 24px}
@@ -332,6 +334,11 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 .btn:hover{opacity:.88}
 .btn-ghost{background:var(--surface-2);color:var(--text);border:1px solid var(--border)}
 
+/* DID YOU KNOW */
+.dyk{background:var(--accent-bg);border:1px solid var(--accent-border);border-radius:var(--radius);padding:16px 20px;margin-bottom:24px}
+.dyk-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--accent-strong);display:block;margin-bottom:8px;font-family:var(--font-display)}
+.dyk p{margin:0;font-size:14px;color:var(--soft);line-height:1.65}
+
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Toolkit","url":"https://cloistr.io/"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Profit margin calculator","url":"https://cloistr.io/profit-margin-calculator.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
@@ -388,14 +395,30 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 <script>
 
 var pmMode=0;
-function setPmMode(m){pmMode=m;document.querySelectorAll('#pm-mode button').forEach(function(b,i){b.classList.toggle('on',i===m)});
-  var lbl=m===0?'Margin (%)':'Sale price (€)';document.querySelector('#pm-field2 label').textContent=lbl;
-  document.getElementById(m===0?'pm-margin':'pm-margin').id=m===0?'pm-margin':'pm-price-in';calcPm();}
+function setPmMode(m){
+  pmMode=m;
+  document.querySelectorAll('#pm-mode button').forEach(function(b,i){b.classList.toggle('on',i===m)});
+  var lbl=m===0?'Margin (%)':'Sale price (€)';
+  document.querySelector('#pm-field2 label').textContent=lbl;
+  var input=document.getElementById('pm-margin');
+  input.value=m===0?60:100;
+  calcPm();
+}
 function calcPm(){
   var cost=parseFloat(document.getElementById('pm-cost').value)||0;
+  var inputVal=parseFloat(document.getElementById('pm-margin').value)||0;
   var price,margin,profit,markup;
-  if(pmMode===0){margin=parseFloat(document.getElementById('pm-margin').value)||0;price=margin>=100?0:cost/(1-margin/100);profit=price-cost;markup=cost>0?profit/cost*100:0;}
-  else{var pi=document.getElementById('pm-margin');price=parseFloat(pi.value)||0;profit=price-cost;margin=price>0?profit/price*100:0;markup=cost>0?profit/cost*100:0;}
+  if(pmMode===0){
+    margin=inputVal;
+    price=margin>=100?0:cost/(1-margin/100);
+    profit=price-cost;
+    markup=cost>0?profit/cost*100:0;
+  }else{
+    price=inputVal;
+    profit=price-cost;
+    margin=price>0?profit/price*100:0;
+    markup=cost>0?profit/cost*100:0;
+  }
   document.getElementById('pm-price').textContent='€'+price.toFixed(2);
   document.getElementById('pm-lbl').textContent=pmMode===0?'Sale price':'Profit margin';
   document.getElementById('pm-rev').textContent='€'+price.toFixed(2);
@@ -415,6 +438,7 @@ function setTheme(mode){if(mode==='light'){document.documentElement.setAttribute
   // Wrap all number inputs with custom spinner UI
   document.querySelectorAll('input[type=number]').forEach(function(inp){
     if(inp.closest('.num-wrap')) return;
+    if(inp.closest('#inv-items')) return;
     var wrap = document.createElement('div');
     wrap.className = 'num-wrap';
     inp.parentNode.insertBefore(wrap, inp);
@@ -422,14 +446,14 @@ function setTheme(mode){if(mode==='light'){document.documentElement.setAttribute
     var btns = document.createElement('div');
     btns.className = 'num-btns';
     var up = document.createElement('button');
-    up.className = 'num-btn'; up.type = 'button'; up.innerHTML = '&#9650;';
+    up.className = 'num-btn'; up.type = 'button'; up.innerHTML = '▲';
     up.addEventListener('click', function(){
       var step = parseFloat(inp.step)||1;
       inp.value = (parseFloat(inp.value||0)+step).toString();
       inp.dispatchEvent(new Event('input'));
     });
     var dn = document.createElement('button');
-    dn.className = 'num-btn'; dn.type = 'button'; dn.innerHTML = '&#9660;';
+    dn.className = 'num-btn'; dn.type = 'button'; dn.innerHTML = '▼';
     dn.addEventListener('click', function(){
       var step = parseFloat(inp.step)||1;
       inp.value = (parseFloat(inp.value||0)-step).toString();

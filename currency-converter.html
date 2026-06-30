@@ -163,6 +163,9 @@ footer .logo{justify-content:center;margin-bottom:10px;font-size:16px}
   .search{max-width:none;order:4;flex-basis:100%;margin:6px 0 0}
   .nav{flex-wrap:wrap}
   .hero{padding-top:44px}
+
+  .panel > div[style*="display:flex;gap:12px"]{flex-direction:column!important}
+  .panel{padding:20px!important}
 }
 
 .meta-date{font-size:12px;color:var(--text-faint);margin:-18px 0 24px}
@@ -332,6 +335,11 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 .btn:hover{opacity:.88}
 .btn-ghost{background:var(--surface-2);color:var(--text);border:1px solid var(--border)}
 
+/* DID YOU KNOW */
+.dyk{background:var(--accent-bg);border:1px solid var(--accent-border);border-radius:var(--radius);padding:16px 20px;margin-bottom:24px}
+.dyk-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--accent-strong);display:block;margin-bottom:8px;font-family:var(--font-display)}
+.dyk p{margin:0;font-size:14px;color:var(--soft);line-height:1.65}
+
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Toolkit","url":"https://cloistr.io/"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Currency converter","url":"https://cloistr.io/currency-converter.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
@@ -358,7 +366,7 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 </main>
 <footer class="site-footer"><div class="footer-inner"><div class="footer-brand"><div class="logo"><span class="dot"></span>Cloistr</div><p class="footer-tagline">Fast, free tools for freelancers and small businesses. Everything runs in your browser.</p></div><div class="footer-links"><div class="footer-col"><div class="footer-col-title">Company</div><a href="#">About</a><a href="#">Privacy policy</a><a href="#">Terms of use</a></div></div></div><div class="footer-bottom"><span>&copy; 2026 Cloistr. All rights reserved.</span></div></footer>
 <script>
-var cur_rates = null;var cur_date = '';function fetchRates(){  var from = document.getElementById('cur-from').value;  fetch('https://api.frankfurter.app/latest?from=' + from)    .then(function(r){return r.json();})    .then(function(data){      cur_rates = data.rates;      cur_rates[from] = 1;      cur_date = data.date;      document.getElementById('cur-date').textContent = cur_date;      convertCur();    })    .catch(function(e){      document.getElementById('cur-result').textContent = 'Error';      document.getElementById('cur-lbl').textContent = 'Could not fetch rates';    });}function convertCur(){  var amt = parseFloat(document.getElementById('cur-amt').value) || 0;  var from = document.getElementById('cur-from').value;  var to = document.getElementById('cur-to').value;  if (!cur_rates || cur_rates[to] === undefined) { fetchRates(); return; }  var rate = cur_rates[to];  var result = amt * rate;  document.getElementById('cur-result').textContent = result.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) + ' ' + to;  document.getElementById('cur-lbl').textContent = amt.toLocaleString() + ' ' + from + ' equals';  document.getElementById('cur-rate').textContent = '1 ' + from + ' = ' + rate.toFixed(4) + ' ' + to;}function swapCur(){  var f = document.getElementById('cur-from');  var t = document.getElementById('cur-to');  var tmp = f.value;  f.value = t.value;  t.value = tmp;  fetchRates();}document.getElementById('cur-from').addEventListener('change', fetchRates);fetchRates();
+var cur_eur_rates = null;var cur_date = '';function fetchRates(){  fetch('https://api.frankfurter.app/latest?from=EUR')    .then(function(r){return r.json();})    .then(function(data){      cur_eur_rates = data.rates;      cur_eur_rates['EUR'] = 1;      cur_date = data.date;      document.getElementById('cur-date').textContent = cur_date;      convertCur();    })    .catch(function(){      document.getElementById('cur-result').textContent = 'Error';      document.getElementById('cur-lbl').textContent = 'Could not fetch rates. Please try again later.';    });}function convertCur(){  if (!cur_eur_rates) { fetchRates(); return; }  var amt = parseFloat(document.getElementById('cur-amt').value) || 0;  var from = document.getElementById('cur-from').value;  var to = document.getElementById('cur-to').value;  var rateFrom = cur_eur_rates[from] || 1;  var rateTo = cur_eur_rates[to] || 1;  var rate = rateTo / rateFrom;  var result = amt * rate;  document.getElementById('cur-result').textContent = result.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) + ' ' + to;  document.getElementById('cur-lbl').textContent = amt.toLocaleString() + ' ' + from + ' equals';  document.getElementById('cur-rate').textContent = '1 ' + from + ' = ' + rate.toFixed(4) + ' ' + to;}function swapCur(){  var f = document.getElementById('cur-from');  var t = document.getElementById('cur-to');  var tmp = f.value; f.value = t.value; t.value = tmp;  convertCur();}document.getElementById('cur-from').addEventListener('change', convertCur);document.getElementById('cur-to').addEventListener('change', convertCur);fetchRates();
 function toggleFaq(b){var i=b.parentElement;i.classList.toggle("open");b.setAttribute("aria-expanded",i.classList.contains("open"))}
 function setTheme(mode){if(mode==='light'){document.documentElement.setAttribute('data-theme','light')}else{document.documentElement.removeAttribute('data-theme')}try{localStorage.setItem('theme',mode)}catch(e){}updateThemeSwitch();}function updateThemeSwitch(){var mode=document.documentElement.getAttribute('data-theme')==='light'?'light':'dark';document.querySelectorAll('.ts-opt').forEach(function(b){b.classList.toggle('on',b.dataset.mode===mode)});}updateThemeSwitch();
 </script>
@@ -368,6 +376,7 @@ function setTheme(mode){if(mode==='light'){document.documentElement.setAttribute
   // Wrap all number inputs with custom spinner UI
   document.querySelectorAll('input[type=number]').forEach(function(inp){
     if(inp.closest('.num-wrap')) return;
+    if(inp.closest('#inv-items')) return;
     var wrap = document.createElement('div');
     wrap.className = 'num-wrap';
     inp.parentNode.insertBefore(wrap, inp);
