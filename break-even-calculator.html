@@ -339,6 +339,14 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 .dyk-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--accent-strong);display:block;margin-bottom:8px;font-family:var(--font-display)}
 .dyk p{margin:0;font-size:14px;color:var(--soft);line-height:1.65}
 
+
+.dd-input{display:flex;align-items:center;justify-content:space-between;gap:8px;height:46px;padding:0 14px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg);color:var(--text);cursor:pointer;font-size:15px;font-family:inherit;transition:border-color .15s;user-select:none;box-sizing:border-box}
+.dd-input:hover{border-color:var(--accent)}
+.dd-input svg{color:var(--text-faint);flex-shrink:0}
+.dd-popup{position:absolute;top:calc(100% + 6px);left:0;right:0;z-index:200;background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:6px;box-shadow:0 8px 32px rgba(0,0,0,.3)}
+.dd-opt{display:block;width:100%;text-align:left;padding:10px 12px;border:none;border-radius:8px;background:none;color:var(--text-dim);font-size:14px;font-family:inherit;cursor:pointer;transition:background .12s,color .12s}
+.dd-opt:hover{background:var(--surface-2);color:var(--title)}
+.dd-opt.on{background:var(--accent);color:var(--accent-text);font-weight:600}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Toolkit","url":"https://cloistr.io/"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Break-even calculator","url":"https://cloistr.io/break-even-calculator.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
@@ -359,10 +367,26 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 <p class="lead">Find out exactly how many units you need to sell before your business starts making money.</p>
 <div class="quick-answer"><span class="qa-label">Did you know?</span><p>Break-even units = <code>Fixed costs ÷ (Sale price − Variable cost per unit)</code>. Example: €5,000 fixed costs, €50 price, €20 variable cost = <strong>167 units</strong> to break even. The revenue needed is 167 × €50 = €8,350.</p></div>
 <div class="panel">
-  <div class="field"><label>Fixed costs per month (€)</label><input type="number" id="be-fixed" value="5000" oninput="calcBe()"></div>
+  <div class="field" style="position:relative">
+    <label>Currency</label>
+    <div class="dd-input" onclick="toggleDD(event,'dd-be-cur')">
+      <span id="be-currency-label">EUR</span>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+    </div>
+    <input type="hidden" id="be-currency" value="&euro;">
+    <div id="dd-be-cur" class="dd-popup" style="display:none">
+      <button type="button" class="dd-opt on" onclick="pickDD(event,'be-currency','&euro;','EUR')">EUR</button>
+      <button type="button" class="dd-opt" onclick="pickDD(event,'be-currency','$','USD')">USD</button>
+      <button type="button" class="dd-opt" onclick="pickDD(event,'be-currency','&pound;','GBP')">GBP</button>
+      <button type="button" class="dd-opt" onclick="pickDD(event,'be-currency','Fr','CHF')">CHF</button>
+      <button type="button" class="dd-opt" onclick="pickDD(event,'be-currency','CA$','CAD')">CAD</button>
+      <button type="button" class="dd-opt" onclick="pickDD(event,'be-currency','A$','AUD')">AUD</button>
+    </div>
+  </div>
+  <div class="field"><label>Fixed costs per month</label><input type="number" id="be-fixed" value="5000" oninput="calcBe()"></div>
   <div style="display:flex;gap:12px">
-    <div class="field" style="flex:1"><label>Sale price per unit (€)</label><input type="number" id="be-price" value="50" oninput="calcBe()"></div>
-    <div class="field" style="flex:1"><label>Variable cost per unit (€)</label><input type="number" id="be-cost" value="20" oninput="calcBe()"></div>
+    <div class="field" style="flex:1"><label>Sale price per unit</label><input type="number" id="be-price" value="50" oninput="calcBe()"></div>
+    <div class="field" style="flex:1"><label>Variable cost per unit</label><input type="number" id="be-cost" value="20" oninput="calcBe()"></div>
   </div>
   <div class="result">
     <div class="big" id="be-units">167</div><div class="lbl">Units to break even</div>
@@ -390,6 +414,8 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 <script>
 
 function calcBe(){
+  var curEl=document.getElementById('be-currency');
+  var cur=curEl?curEl.value:'€';
   var fixed=parseFloat(document.getElementById('be-fixed').value)||0;
   var price=parseFloat(document.getElementById('be-price').value)||0;
   var cost=parseFloat(document.getElementById('be-cost').value)||0;
@@ -398,9 +424,32 @@ function calcBe(){
   var units=Math.ceil(fixed/margin);
   var rev=units*price;
   document.getElementById('be-units').textContent=units.toLocaleString();
-  document.getElementById('be-rev').textContent='€'+rev.toLocaleString();
-  document.getElementById('be-margin').textContent='€'+margin.toFixed(2)+'/unit';
+  document.getElementById('be-rev').textContent=cur+rev.toLocaleString();
+  document.getElementById('be-margin').textContent=cur+margin.toFixed(2)+'/unit';
 }
+
+function toggleDD(e, ddId) {
+  e.stopPropagation();
+  document.querySelectorAll('.dd-popup').forEach(function(d) { if (d.id !== ddId) d.style.display = 'none'; });
+  var dd = document.getElementById(ddId);
+  dd.style.display = dd.style.display === 'block' ? 'none' : 'block';
+}
+function pickDD(e, inputId, value, label) {
+  e.stopPropagation();
+  document.getElementById(inputId).value = value;
+  document.getElementById(inputId + '-label').textContent = label;
+  var popup = e.target.closest('.dd-popup');
+  popup.querySelectorAll('.dd-opt').forEach(function(o) { o.classList.remove('on'); });
+  e.target.classList.add('on');
+  popup.style.display = 'none';
+  calcBe();
+}
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.dd-popup') && !e.target.closest('.dd-input')) {
+    document.querySelectorAll('.dd-popup').forEach(function(d) { d.style.display = 'none'; });
+  }
+});
+
 calcBe();
 
 function toggleFaq(b){var i=b.parentElement;i.classList.toggle("open");b.setAttribute("aria-expanded",i.classList.contains("open"))}

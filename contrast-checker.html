@@ -384,14 +384,14 @@ function setTheme(mode){if(mode==='light'){document.documentElement.setAttribute
     var btns = document.createElement('div');
     btns.className = 'num-btns';
     var up = document.createElement('button');
-    up.className = 'num-btn'; up.type = 'button'; up.innerHTML = '&#9650;';
+    up.className = 'num-btn'; up.type = 'button'; up.innerHTML = '▲';
     up.addEventListener('click', function(){
       var step = parseFloat(inp.step)||1;
       inp.value = (parseFloat(inp.value||0)+step).toString();
       inp.dispatchEvent(new Event('input'));
     });
     var dn = document.createElement('button');
-    dn.className = 'num-btn'; dn.type = 'button'; dn.innerHTML = '&#9660;';
+    dn.className = 'num-btn'; dn.type = 'button'; dn.innerHTML = '▼';
     dn.addEventListener('click', function(){
       var step = parseFloat(inp.step)||1;
       inp.value = (parseFloat(inp.value||0)-step).toString();

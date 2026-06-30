@@ -439,17 +439,17 @@ input[type=number]{-moz-appearance:textfield}
     <div class="field" style="margin-bottom:0;position:relative">
       <label>Currency</label>
       <div class="dd-input" onclick="toggleDD(event,'dd-inv-cur')">
-        <span id="inv-cur-label">&euro; EUR</span>
+        <span id="inv-cur-label">EUR</span>
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
       </div>
       <input type="hidden" id="inv-cur" value="&euro;">
       <div id="dd-inv-cur" class="dd-popup" style="display:none">
-        <button type="button" class="dd-opt on" onclick="pickDD(event,'inv-cur','&euro;','&euro; EUR')">&euro; EUR</button>
-        <button type="button" class="dd-opt" onclick="pickDD(event,'inv-cur','$','$ USD')">$ USD</button>
-        <button type="button" class="dd-opt" onclick="pickDD(event,'inv-cur','&pound;','&pound; GBP')">&pound; GBP</button>
-        <button type="button" class="dd-opt" onclick="pickDD(event,'inv-cur','Fr','Fr CHF')">Fr CHF</button>
-        <button type="button" class="dd-opt" onclick="pickDD(event,'inv-cur','CA$','CA$ CAD')">CA$ CAD</button>
-        <button type="button" class="dd-opt" onclick="pickDD(event,'inv-cur','A$','A$ AUD')">A$ AUD</button>
+        <button type="button" class="dd-opt on" onclick="pickDD(event,'inv-cur','&euro;','EUR')">EUR</button>
+        <button type="button" class="dd-opt" onclick="pickDD(event,'inv-cur','$','USD')">USD</button>
+        <button type="button" class="dd-opt" onclick="pickDD(event,'inv-cur','&pound;','GBP')">GBP</button>
+        <button type="button" class="dd-opt" onclick="pickDD(event,'inv-cur','Fr','CHF')">CHF</button>
+        <button type="button" class="dd-opt" onclick="pickDD(event,'inv-cur','CA$','CAD')">CAD</button>
+        <button type="button" class="dd-opt" onclick="pickDD(event,'inv-cur','A$','AUD')">AUD</button>
       </div>
     </div>
   </div>

@@ -339,6 +339,14 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 .dyk-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--accent-strong);display:block;margin-bottom:8px;font-family:var(--font-display)}
 .dyk p{margin:0;font-size:14px;color:var(--soft);line-height:1.65}
 
+
+.dd-input{display:flex;align-items:center;justify-content:space-between;gap:8px;height:46px;padding:0 14px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg);color:var(--text);cursor:pointer;font-size:15px;font-family:inherit;transition:border-color .15s;user-select:none;box-sizing:border-box}
+.dd-input:hover{border-color:var(--accent)}
+.dd-input svg{color:var(--text-faint);flex-shrink:0}
+.dd-popup{position:absolute;top:calc(100% + 6px);left:0;right:0;z-index:200;background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:6px;box-shadow:0 8px 32px rgba(0,0,0,.3)}
+.dd-opt{display:block;width:100%;text-align:left;padding:10px 12px;border:none;border-radius:8px;background:none;color:var(--text-dim);font-size:14px;font-family:inherit;cursor:pointer;transition:background .12s,color .12s}
+.dd-opt:hover{background:var(--surface-2);color:var(--title)}
+.dd-opt.on{background:var(--accent);color:var(--accent-text);font-weight:600}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Toolkit","url":"https://cloistr.io/"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Profit margin calculator","url":"https://cloistr.io/profit-margin-calculator.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
@@ -359,13 +367,31 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 <p class="lead">Calculate sale price, profit, margin and markup — see the full breakdown instantly.</p>
 <div class="quick-answer"><span class="qa-label">Did you know?</span><p><strong>Margin</strong> = Profit ÷ Revenue × 100 (profit as % of selling price). <strong>Markup</strong> = Profit ÷ Cost × 100 (profit as % of cost). Example: cost €40, price €100 → margin 60%, markup 150%.</p></div>
 <div class="panel">
-  <div class="field"><label>Mode</label>
-    <div class="seg" id="pm-mode">
-      <button class="on" onclick="setPmMode(0)">Cost + margin</button>
-      <button onclick="setPmMode(1)">Cost + price</button>
+  <div style="display:flex;gap:12px">
+    <div class="field" style="flex:2"><label>Mode</label>
+      <div class="seg" id="pm-mode">
+        <button class="on" onclick="setPmMode(0)">Cost + margin</button>
+        <button onclick="setPmMode(1)">Cost + price</button>
+      </div>
+    </div>
+    <div class="field" style="flex:1;position:relative">
+      <label>Currency</label>
+      <div class="dd-input" onclick="toggleDD(event,'dd-pm-cur')">
+        <span id="pm-currency-label">EUR</span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <input type="hidden" id="pm-currency" value="&euro;">
+      <div id="dd-pm-cur" class="dd-popup" style="display:none">
+        <button type="button" class="dd-opt on" onclick="pickDD(event,'pm-currency','&euro;','EUR')">EUR</button>
+        <button type="button" class="dd-opt" onclick="pickDD(event,'pm-currency','$','USD')">USD</button>
+        <button type="button" class="dd-opt" onclick="pickDD(event,'pm-currency','&pound;','GBP')">GBP</button>
+        <button type="button" class="dd-opt" onclick="pickDD(event,'pm-currency','Fr','CHF')">CHF</button>
+        <button type="button" class="dd-opt" onclick="pickDD(event,'pm-currency','CA$','CAD')">CAD</button>
+        <button type="button" class="dd-opt" onclick="pickDD(event,'pm-currency','A$','AUD')">AUD</button>
+      </div>
     </div>
   </div>
-  <div class="field"><label>Cost (€)</label><input type="number" id="pm-cost" value="40" oninput="calcPm()"></div>
+  <div class="field"><label>Cost</label><input type="number" id="pm-cost" value="40" oninput="calcPm()"></div>
   <div class="field" id="pm-field2"><label>Margin (%)</label><input type="number" id="pm-margin" value="60" oninput="calcPm()"></div>
   <div class="result">
     <div class="big" id="pm-price">€100.00</div><div class="lbl" id="pm-lbl">Sale price</div>
@@ -394,17 +420,42 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 <footer class="site-footer"><div class="footer-inner"><div class="footer-brand"><div class="logo"><span class="dot"></span>Cloistr</div><p class="footer-tagline">Fast, free tools for freelancers and small businesses. Everything runs in your browser.</p></div><div class="footer-links"><div class="footer-col"><div class="footer-col-title">Company</div><a href="#">About</a><a href="#">Privacy policy</a><a href="#">Terms of use</a></div></div></div><div class="footer-bottom"><span>&copy; 2026 Cloistr. All rights reserved.</span></div></footer>
 <script>
 
+
+function toggleDD(e, ddId) {
+  e.stopPropagation();
+  document.querySelectorAll('.dd-popup').forEach(function(d) { if (d.id !== ddId) d.style.display = 'none'; });
+  var dd = document.getElementById(ddId);
+  dd.style.display = dd.style.display === 'block' ? 'none' : 'block';
+}
+function pickDD(e, inputId, value, label) {
+  e.stopPropagation();
+  document.getElementById(inputId).value = value;
+  document.getElementById(inputId + '-label').textContent = label;
+  var popup = e.target.closest('.dd-popup');
+  popup.querySelectorAll('.dd-opt').forEach(function(o) { o.classList.remove('on'); });
+  e.target.classList.add('on');
+  popup.style.display = 'none';
+  calcPm();
+}
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.dd-popup') && !e.target.closest('.dd-input')) {
+    document.querySelectorAll('.dd-popup').forEach(function(d) { d.style.display = 'none'; });
+  }
+});
+
 var pmMode=0;
 function setPmMode(m){
   pmMode=m;
   document.querySelectorAll('#pm-mode button').forEach(function(b,i){b.classList.toggle('on',i===m)});
-  var lbl=m===0?'Margin (%)':'Sale price (€)';
+  var lbl=m===0?'Margin (%)':'Sale price';
   document.querySelector('#pm-field2 label').textContent=lbl;
   var input=document.getElementById('pm-margin');
   input.value=m===0?60:100;
   calcPm();
 }
 function calcPm(){
+  var curEl=document.getElementById('pm-currency');
+  var cur=curEl?curEl.value:'\u20ac';
   var cost=parseFloat(document.getElementById('pm-cost').value)||0;
   var inputVal=parseFloat(document.getElementById('pm-margin').value)||0;
   var price,margin,profit,markup;
@@ -419,11 +470,11 @@ function calcPm(){
     margin=price>0?profit/price*100:0;
     markup=cost>0?profit/cost*100:0;
   }
-  document.getElementById('pm-price').textContent='€'+price.toFixed(2);
+  document.getElementById('pm-price').textContent=cur+price.toFixed(2);
   document.getElementById('pm-lbl').textContent=pmMode===0?'Sale price':'Profit margin';
-  document.getElementById('pm-rev').textContent='€'+price.toFixed(2);
-  document.getElementById('pm-cost-out').textContent='€'+cost.toFixed(2);
-  document.getElementById('pm-profit').textContent='€'+profit.toFixed(2);
+  document.getElementById('pm-rev').textContent=cur+price.toFixed(2);
+  document.getElementById('pm-cost-out').textContent=cur+cost.toFixed(2);
+  document.getElementById('pm-profit').textContent=cur+profit.toFixed(2);
   document.getElementById('pm-marg-out').textContent=margin.toFixed(1)+'%';
   document.getElementById('pm-markup').textContent=markup.toFixed(1)+'%';
 }

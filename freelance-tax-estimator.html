@@ -339,6 +339,14 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 .dyk-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--accent-strong);display:block;margin-bottom:8px;font-family:var(--font-display)}
 .dyk p{margin:0;font-size:14px;color:var(--soft);line-height:1.65}
 
+
+.dd-input{display:flex;align-items:center;justify-content:space-between;gap:8px;height:46px;padding:0 14px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg);color:var(--text);cursor:pointer;font-size:15px;font-family:inherit;transition:border-color .15s;user-select:none;box-sizing:border-box}
+.dd-input:hover{border-color:var(--accent)}
+.dd-input svg{color:var(--text-faint);flex-shrink:0}
+.dd-popup{position:absolute;top:calc(100% + 6px);left:0;right:0;z-index:200;background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:6px;box-shadow:0 8px 32px rgba(0,0,0,.3)}
+.dd-opt{display:block;width:100%;text-align:left;padding:10px 12px;border:none;border-radius:8px;background:none;color:var(--text-dim);font-size:14px;font-family:inherit;cursor:pointer;transition:background .12s,color .12s}
+.dd-opt:hover{background:var(--surface-2);color:var(--title)}
+.dd-opt.on{background:var(--accent);color:var(--accent-text);font-weight:600}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Toolkit","url":"https://cloistr.io/"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Freelance tax estimator","url":"https://cloistr.io/freelance-tax-estimator.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
@@ -359,8 +367,24 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 <p class="lead">Estimate your quarterly tax payments as a freelancer or self-employed worker.</p>
 <div class="quick-answer"><span class="qa-label">Did you know?</span><p>Freelancers owe <strong>15.3% self-employment tax</strong> on 92.35% of net profit, plus regular income tax. A safe rule: set aside <code>25-30%</code> of every payment you receive. This tool calculates your exact quarterly estimate.</p></div>
 <div class="panel">
-  <div class="field"><label>Annual gross income (€)</label><input type="number" id="ft-income" value="60000" oninput="calcFt()"></div>
-  <div class="field"><label>Annual business expenses (€)</label><input type="number" id="ft-exp" value="10000" oninput="calcFt()"></div>
+  <div class="field" style="position:relative">
+    <label>Currency</label>
+    <div class="dd-input" onclick="toggleDD(event,'dd-ft-cur')">
+      <span id="ft-currency-label">EUR</span>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+    </div>
+    <input type="hidden" id="ft-currency" value="&euro;">
+    <div id="dd-ft-cur" class="dd-popup" style="display:none">
+      <button type="button" class="dd-opt on" onclick="pickDD(event,'ft-currency','&euro;','EUR')">EUR</button>
+      <button type="button" class="dd-opt" onclick="pickDD(event,'ft-currency','$','USD')">USD</button>
+      <button type="button" class="dd-opt" onclick="pickDD(event,'ft-currency','&pound;','GBP')">GBP</button>
+      <button type="button" class="dd-opt" onclick="pickDD(event,'ft-currency','Fr','CHF')">CHF</button>
+      <button type="button" class="dd-opt" onclick="pickDD(event,'ft-currency','CA$','CAD')">CAD</button>
+      <button type="button" class="dd-opt" onclick="pickDD(event,'ft-currency','A$','AUD')">AUD</button>
+    </div>
+  </div>
+  <div class="field"><label>Annual gross income</label><input type="number" id="ft-income" value="60000" oninput="calcFt()"></div>
+  <div class="field"><label>Annual business expenses</label><input type="number" id="ft-exp" value="10000" oninput="calcFt()"></div>
   <div class="result">
     <div class="big" id="ft-quarterly">€3,825</div><div class="lbl">Estimated quarterly tax payment</div>
     <div class="breakdown">
@@ -389,6 +413,8 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 <script>
 
 function calcFt(){
+  var curEl=document.getElementById('ft-currency');
+  var cur=curEl?curEl.value:'€';
   var income=parseFloat(document.getElementById('ft-income').value)||0;
   var exp=parseFloat(document.getElementById('ft-exp').value)||0;
   var net=income-exp;
@@ -401,12 +427,35 @@ function calcFt(){
   if(agi>191950)fed+=(agi-191950)*0.32;
   var total=se+fed;
   var quarterly=total/4;
-  document.getElementById('ft-quarterly').textContent='€'+Math.round(quarterly).toLocaleString();
-  document.getElementById('ft-net').textContent='€'+Math.round(net).toLocaleString();
-  document.getElementById('ft-se').textContent='€'+Math.round(se).toLocaleString();
-  document.getElementById('ft-inc').textContent='€'+Math.round(fed).toLocaleString();
-  document.getElementById('ft-total').textContent='€'+Math.round(total).toLocaleString();
+  document.getElementById('ft-quarterly').textContent=cur+Math.round(quarterly).toLocaleString();
+  document.getElementById('ft-net').textContent=cur+Math.round(net).toLocaleString();
+  document.getElementById('ft-se').textContent=cur+Math.round(se).toLocaleString();
+  document.getElementById('ft-inc').textContent=cur+Math.round(fed).toLocaleString();
+  document.getElementById('ft-total').textContent=cur+Math.round(total).toLocaleString();
 }
+
+function toggleDD(e, ddId) {
+  e.stopPropagation();
+  document.querySelectorAll('.dd-popup').forEach(function(d) { if (d.id !== ddId) d.style.display = 'none'; });
+  var dd = document.getElementById(ddId);
+  dd.style.display = dd.style.display === 'block' ? 'none' : 'block';
+}
+function pickDD(e, inputId, value, label) {
+  e.stopPropagation();
+  document.getElementById(inputId).value = value;
+  document.getElementById(inputId + '-label').textContent = label;
+  var popup = e.target.closest('.dd-popup');
+  popup.querySelectorAll('.dd-opt').forEach(function(o) { o.classList.remove('on'); });
+  e.target.classList.add('on');
+  popup.style.display = 'none';
+  calcFt();
+}
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.dd-popup') && !e.target.closest('.dd-input')) {
+    document.querySelectorAll('.dd-popup').forEach(function(d) { d.style.display = 'none'; });
+  }
+});
+
 calcFt();
 
 function toggleFaq(b){var i=b.parentElement;i.classList.toggle("open");b.setAttribute("aria-expanded",i.classList.contains("open"))}

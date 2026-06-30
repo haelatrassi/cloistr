@@ -370,18 +370,18 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 <div class="panel"><div style="display:flex;gap:12px"><div class="field" style="flex:2"><label for="amt">Amount</label><input type="number" id="amt" value="100" oninput="calcVat()"></div><div class="field" style="flex:1;position:relative">
   <label>Currency</label>
   <div class="dd-input" onclick="toggleDD(event,'dd-vat-cur')">
-    <span id="vat-currency-label">&euro; EUR</span>
+    <span id="vat-currency-label">EUR</span>
     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
   </div>
   <input type="hidden" id="vat-currency" value="&euro;">
   <div id="dd-vat-cur" class="dd-popup" style="display:none">
-    <button type="button" class="dd-opt on" onclick="pickDD(event,'vat-currency','&euro;','&euro; EUR')">&euro; EUR</button>
-    <button type="button" class="dd-opt" onclick="pickDD(event,'vat-currency','$','$ USD')">$ USD</button>
-    <button type="button" class="dd-opt" onclick="pickDD(event,'vat-currency','&pound;','&pound; GBP')">&pound; GBP</button>
-    <button type="button" class="dd-opt" onclick="pickDD(event,'vat-currency','&yen;','&yen; JPY')">&yen; JPY</button>
-    <button type="button" class="dd-opt" onclick="pickDD(event,'vat-currency','Fr','Fr CHF')">Fr CHF</button>
-    <button type="button" class="dd-opt" onclick="pickDD(event,'vat-currency','CA$','CA$ CAD')">CA$ CAD</button>
-    <button type="button" class="dd-opt" onclick="pickDD(event,'vat-currency','A$','A$ AUD')">A$ AUD</button>
+    <button type="button" class="dd-opt on" onclick="pickDD(event,'vat-currency','&euro;','EUR')">EUR</button>
+    <button type="button" class="dd-opt" onclick="pickDD(event,'vat-currency','$','USD')">USD</button>
+    <button type="button" class="dd-opt" onclick="pickDD(event,'vat-currency','&pound;','GBP')">GBP</button>
+    <button type="button" class="dd-opt" onclick="pickDD(event,'vat-currency','&yen;','JPY')">JPY</button>
+    <button type="button" class="dd-opt" onclick="pickDD(event,'vat-currency','Fr','CHF')">CHF</button>
+    <button type="button" class="dd-opt" onclick="pickDD(event,'vat-currency','CA$','CAD')">CAD</button>
+    <button type="button" class="dd-opt" onclick="pickDD(event,'vat-currency','A$','AUD')">AUD</button>
   </div>
 </div></div><div class="field"><label for="rate">VAT rate (%)</label><input type="number" id="rate" value="20" oninput="calcVat()"></div><div class="field"><label>Mode</label><div class="seg" id="mode"><button class="on" onclick="setVat('add')">Add VAT (net &rarr; gross)</button><button onclick="setVat('remove')">Remove VAT (gross &rarr; net)</button></div></div><div class="result"><div class="big" id="total">&euro;120.00</div><div class="lbl" id="lbl">Gross amount</div><div class="breakdown"><div class="line"><span>Net</span><b id="net">&euro;100.00</b></div><div class="line"><span>VAT</span><b id="vat">&euro;20.00</b></div></div></div></div>
 <article class="content"><h2>What this VAT calculator does</h2><ul class="key-points"><li>Adds VAT to a net (pre-tax) price to give the gross total your customer pays.</li><li>Removes VAT from a gross (tax-inclusive) price to reveal the underlying net amount.</li><li>Works with any VAT rate, not just the standard 20%.</li></ul><h2>How to calculate VAT</h2><p>To add VAT, multiply the net amount by one plus the rate: <code>gross = net &times; (1 + rate)</code>. So 100 at 20% becomes <code>100 &times; 1.20 = 120</code>.</p><p>To remove VAT, divide the gross amount by one plus the rate: <code>net = gross &divide; (1 + rate)</code>. So 120 at 20% becomes <code>120 &divide; 1.20 = 100</code>, leaving 20 of VAT.</p></article>
