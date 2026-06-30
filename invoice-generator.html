@@ -355,6 +355,14 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 .cal-sel{background:var(--accent)!important;color:var(--accent-text)!important;font-weight:600}
 input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
 input[type=number]{-moz-appearance:textfield}
+
+.dd-input{display:flex;align-items:center;justify-content:space-between;gap:8px;height:46px;padding:0 14px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg);color:var(--text);cursor:pointer;font-size:15px;font-family:inherit;transition:border-color .15s;user-select:none;box-sizing:border-box}
+.dd-input:hover{border-color:var(--accent)}
+.dd-input svg{color:var(--text-faint);flex-shrink:0}
+.dd-popup{position:absolute;top:calc(100% + 6px);left:0;right:0;z-index:200;background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:6px;box-shadow:0 8px 32px rgba(0,0,0,.3)}
+.dd-opt{display:block;width:100%;text-align:left;padding:10px 12px;border:none;border-radius:8px;background:none;color:var(--text-dim);font-size:14px;font-family:inherit;cursor:pointer;transition:background .12s,color .12s}
+.dd-opt:hover{background:var(--surface-2);color:var(--title)}
+.dd-opt.on{background:var(--accent);color:var(--accent-text);font-weight:600}
 </style>
 </head>
 <body>
@@ -428,15 +436,21 @@ input[type=number]{-moz-appearance:textfield}
       <input type="hidden" id="inv-due">
       <div id="cal-inv-due" class="cal-popup" style="display:none"></div>
     </div>
-    <div class="field" style="margin-bottom:0"><label>Currency</label>
-      <select id="inv-cur" onchange="updateCur()" style="width:100%;height:46px;box-sizing:border-box">
-        <option value="&euro;">&euro; EUR</option>
-        <option value="$">$ USD</option>
-        <option value="&pound;">&pound; GBP</option>
-        <option value="Fr">Fr CHF</option>
-        <option value="CA$">CA$ CAD</option>
-        <option value="A$">A$ AUD</option>
-      </select>
+    <div class="field" style="margin-bottom:0;position:relative">
+      <label>Currency</label>
+      <div class="dd-input" onclick="toggleDD(event,'dd-inv-cur')">
+        <span id="inv-cur-label">&euro; EUR</span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <input type="hidden" id="inv-cur" value="&euro;">
+      <div id="dd-inv-cur" class="dd-popup" style="display:none">
+        <button type="button" class="dd-opt on" onclick="pickDD(event,'inv-cur','&euro;','&euro; EUR')">&euro; EUR</button>
+        <button type="button" class="dd-opt" onclick="pickDD(event,'inv-cur','$','$ USD')">$ USD</button>
+        <button type="button" class="dd-opt" onclick="pickDD(event,'inv-cur','&pound;','&pound; GBP')">&pound; GBP</button>
+        <button type="button" class="dd-opt" onclick="pickDD(event,'inv-cur','Fr','Fr CHF')">Fr CHF</button>
+        <button type="button" class="dd-opt" onclick="pickDD(event,'inv-cur','CA$','CA$ CAD')">CA$ CAD</button>
+        <button type="button" class="dd-opt" onclick="pickDD(event,'inv-cur','A$','A$ AUD')">A$ AUD</button>
+      </div>
     </div>
   </div>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px">
@@ -528,6 +542,24 @@ function getCur() {
   var s = document.getElementById('inv-cur');
   return s ? s.value : '€';
 }
+
+function toggleDD(e, ddId) {
+  e.stopPropagation();
+  document.querySelectorAll('.dd-popup').forEach(function(d) { if (d.id !== ddId) d.style.display = 'none'; });
+  var dd = document.getElementById(ddId);
+  dd.style.display = dd.style.display === 'block' ? 'none' : 'block';
+}
+function pickDD(e, inputId, value, label) {
+  e.stopPropagation();
+  document.getElementById(inputId).value = value;
+  document.getElementById(inputId + '-label').textContent = label;
+  var popup = e.target.closest('.dd-popup');
+  popup.querySelectorAll('.dd-opt').forEach(function(o) { o.classList.remove('on'); });
+  e.target.classList.add('on');
+  popup.style.display = 'none';
+  if (inputId === 'inv-cur') updateCur();
+}
+
 function updateCur() { renderItems(); calc(); }
 
 function loadLogo(input) {
@@ -681,6 +713,9 @@ function pickDay(calId, iso) {
 document.addEventListener('click', function(e) {
   if (!e.target.closest('.cal-popup') && !e.target.closest('.cal-input')) {
     document.querySelectorAll('.cal-popup').forEach(function(c) { c.style.display = 'none'; });
+  }
+  if (!e.target.closest('.dd-popup') && !e.target.closest('.dd-input')) {
+    document.querySelectorAll('.dd-popup').forEach(function(d) { d.style.display = 'none'; });
   }
 });
 

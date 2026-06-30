@@ -340,6 +340,15 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 .dyk-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--accent-strong);display:block;margin-bottom:8px;font-family:var(--font-display)}
 .dyk p{margin:0;font-size:14px;color:var(--soft);line-height:1.65}
 
+
+.dd-input{display:flex;align-items:center;justify-content:space-between;gap:8px;height:46px;padding:0 14px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg);color:var(--text);cursor:pointer;font-size:15px;font-family:inherit;transition:border-color .15s;user-select:none;box-sizing:border-box}
+.dd-input:hover{border-color:var(--accent)}
+.dd-input svg{color:var(--text-faint);flex-shrink:0}
+.dd-popup{position:absolute;top:calc(100% + 6px);left:0;right:0;z-index:200;background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:6px;box-shadow:0 8px 32px rgba(0,0,0,.3)}
+.dd-popup-scroll{max-height:240px;overflow-y:auto}
+.dd-opt{display:block;width:100%;text-align:left;padding:10px 12px;border:none;border-radius:8px;background:none;color:var(--text-dim);font-size:14px;font-family:inherit;cursor:pointer;transition:background .12s,color .12s}
+.dd-opt:hover{background:var(--surface-2);color:var(--title)}
+.dd-opt.on{background:var(--accent);color:var(--accent-text);font-weight:600}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Toolkit","url":"https://cloistr.io/"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Currency converter","url":"https://cloistr.io/currency-converter.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
@@ -359,14 +368,78 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 <div class="tool-head"><div class="ico i-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M14.8 9a3 3 0 0 0-5.6 1.2c0 3 5.6 1.8 5.6 4.6a3 3 0 0 1-5.6 1.2M12 6v1m0 10v1"/></svg></div><h1>Currency converter</h1></div>
 <p class="lead">Convert between 18 major world currencies using live exchange rates.</p>
 <div class="quick-answer"><span class="qa-label">Did you know?</span><p>This currency converter uses <strong>live rates from the European Central Bank</strong>, updated daily. Select your source and target currencies, enter an amount, and get the conversion instantly. Rates are for indication only — actual transactions include bank fees and margins.</p></div>
-<div class="panel"><div style="display:flex;gap:12px"><div class="field" style="flex:2"><label>Amount</label><input type="number" id="cur-amt" value="100" oninput="convertCur()"></div><div class="field" style="flex:1"><label>From</label><select id="cur-from" onchange="convertCur()" style="width:100%;padding:11px 14px;border-radius:10px;border:1.5px solid var(--border);background:var(--bg);color:var(--text);font-size:15px;font-family:inherit;outline:none;cursor:pointer"><option value="USD">USD</option><option value="EUR" selected>EUR</option><option value="GBP">GBP</option><option value="JPY">JPY</option><option value="CHF">CHF</option><option value="CAD">CAD</option><option value="AUD">AUD</option><option value="CNY">CNY</option><option value="INR">INR</option><option value="MXN">MXN</option><option value="BRL">BRL</option><option value="ZAR">ZAR</option><option value="SGD">SGD</option><option value="NOK">NOK</option><option value="SEK">SEK</option><option value="DKK">DKK</option><option value="PLN">PLN</option><option value="TRY">TRY</option></select></div><button onclick="swapCur()" style="align-self:flex-end;margin-bottom:20px;padding:11px 12px;border-radius:10px;border:1.5px solid var(--border);background:var(--surface-2);color:var(--text-dim);cursor:pointer;font-family:inherit" title="Swap currencies"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 16V4M3 8l4-4 4 4M17 8v12M21 16l-4 4-4-4"/></svg></button><div class="field" style="flex:1"><label>To</label><select id="cur-to" onchange="convertCur()" style="width:100%;padding:11px 14px;border-radius:10px;border:1.5px solid var(--border);background:var(--bg);color:var(--text);font-size:15px;font-family:inherit;outline:none;cursor:pointer"><option value="USD" selected>USD</option><option value="EUR">EUR</option><option value="GBP">GBP</option><option value="JPY">JPY</option><option value="CHF">CHF</option><option value="CAD">CAD</option><option value="AUD">AUD</option><option value="CNY">CNY</option><option value="INR">INR</option><option value="MXN">MXN</option><option value="BRL">BRL</option><option value="ZAR">ZAR</option><option value="SGD">SGD</option><option value="NOK">NOK</option><option value="SEK">SEK</option><option value="DKK">DKK</option><option value="PLN">PLN</option><option value="TRY">TRY</option></select></div></div><div class="result"><div class="big" id="cur-result">Loading...</div><div class="lbl" id="cur-lbl">&nbsp;</div><div class="breakdown"><div class="line"><span>Exchange rate</span><b id="cur-rate">â</b></div><div class="line"><span>Last updated</span><b id="cur-date">â</b></div></div></div><p style="font-size:12px;color:var(--text-faint);margin-top:14px;line-height:1.5">Rates from the European Central Bank, updated daily. For indication only, not financial advice.</p></div>
+<div class="panel"><div style="display:flex;gap:12px"><div class="field" style="flex:2"><label>Amount</label><input type="number" id="cur-amt" value="100" oninput="convertCur()"></div><div class="field" style="flex:1;position:relative">
+<label>From</label>
+<div class="dd-input" onclick="toggleDD(event,'dd-cur-from')">
+  <span id="cur-from-label">EUR</span>
+  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+</div>
+<input type="hidden" id="cur-from" value="EUR">
+<div id="dd-cur-from" class="dd-popup dd-popup-scroll" style="display:none"></div>
+</div>
+<button onclick="swapCur()" style="align-self:flex-end;margin-bottom:20px;padding:11px 12px;border-radius:10px;border:1.5px solid var(--border);background:var(--surface-2);color:var(--text-dim);cursor:pointer;font-family:inherit" title="Swap currencies"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 16V4M3 8l4-4 4 4M17 8v12M21 16l-4 4-4-4"/></svg></button>
+<div class="field" style="flex:1;position:relative">
+<label>To</label>
+<div class="dd-input" onclick="toggleDD(event,'dd-cur-to')">
+  <span id="cur-to-label">USD</span>
+  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+</div>
+<input type="hidden" id="cur-to" value="USD">
+<div id="dd-cur-to" class="dd-popup dd-popup-scroll" style="display:none"></div>
+</div></div><div class="result"><div class="big" id="cur-result">Loading...</div><div class="lbl" id="cur-lbl">&nbsp;</div><div class="breakdown"><div class="line"><span>Exchange rate</span><b id="cur-rate">â</b></div><div class="line"><span>Last updated</span><b id="cur-date">â</b></div></div></div><p style="font-size:12px;color:var(--text-faint);margin-top:14px;line-height:1.5">Rates from the European Central Bank, updated daily. For indication only, not financial advice.</p></div>
 <article class="content"><h2>How currency conversion works</h2><ul class="key-points"><li>Exchange rates change throughout the day based on global markets.</li><li>The rates shown here come from the European Central Bank and update once per day.</li><li>For actual transactions, banks and money transfer services add a margin to the official rate.</li></ul><h2>Why exchange rates differ between providers</h2><p>The "mid-market rate" you see in our tool is the average between buy and sell prices on the wholesale currency market. Banks and currency exchange services add a markup (typically 2-5%) on top, plus fees. Services like Wise and Revolut tend to charge less, while traditional banks and airport exchanges charge more.</p></article>
 <section class="content"><h2>FAQ</h2><details class="faq-item"><summary>Are these rates live?<span class="faq-plus" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span></summary><p>Rates come from the European Central Bank and update once per day. They are the mid-market rates used in global currency trading.</p></details><details class="faq-item"><summary>Why is the bank rate different?<span class="faq-plus" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span></summary><p>Banks and exchange services add a markup of 2-5% plus fees to the mid-market rate. That is how they make money on currency conversion.</p></details><details class="faq-item"><summary>Which currencies are supported?<span class="faq-plus" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span></summary><p>18 major currencies: USD, EUR, GBP, JPY, CHF, CAD, AUD, CNY, INR, MXN, BRL, ZAR, SGD, NOK, SEK, DKK, PLN, TRY.</p></details></section>
 <section class="related"><h2>Related tools</h2><div class="related-grid"><a href="vat-calculator.html">VAT calculator →</a><a href="invoice-generator.html">Invoice generator →</a><a href="break-even-calculator.html">Break-even calculator →</a></div></section>
 </main>
 <footer class="site-footer"><div class="footer-inner"><div class="footer-brand"><div class="logo"><span class="dot"></span>Cloistr</div><p class="footer-tagline">Fast, free tools for freelancers and small businesses. Everything runs in your browser.</p></div><div class="footer-links"><div class="footer-col"><div class="footer-col-title">Company</div><a href="#">About</a><a href="#">Privacy policy</a><a href="#">Terms of use</a></div></div></div><div class="footer-bottom"><span>&copy; 2026 Cloistr. All rights reserved.</span></div></footer>
 <script>
-var cur_eur_rates = null;var cur_date = '';function fetchRates(){  fetch('https://api.frankfurter.app/latest?from=EUR')    .then(function(r){return r.json();})    .then(function(data){      cur_eur_rates = data.rates;      cur_eur_rates['EUR'] = 1;      cur_date = data.date;      document.getElementById('cur-date').textContent = cur_date;      convertCur();    })    .catch(function(){      document.getElementById('cur-result').textContent = 'Error';      document.getElementById('cur-lbl').textContent = 'Could not fetch rates. Please try again later.';    });}function convertCur(){  if (!cur_eur_rates) { fetchRates(); return; }  var amt = parseFloat(document.getElementById('cur-amt').value) || 0;  var from = document.getElementById('cur-from').value;  var to = document.getElementById('cur-to').value;  var rateFrom = cur_eur_rates[from] || 1;  var rateTo = cur_eur_rates[to] || 1;  var rate = rateTo / rateFrom;  var result = amt * rate;  document.getElementById('cur-result').textContent = result.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) + ' ' + to;  document.getElementById('cur-lbl').textContent = amt.toLocaleString() + ' ' + from + ' equals';  document.getElementById('cur-rate').textContent = '1 ' + from + ' = ' + rate.toFixed(4) + ' ' + to;}function swapCur(){  var f = document.getElementById('cur-from');  var t = document.getElementById('cur-to');  var tmp = f.value; f.value = t.value; t.value = tmp;  convertCur();}document.getElementById('cur-from').addEventListener('change', convertCur);document.getElementById('cur-to').addEventListener('change', convertCur);fetchRates();
+var cur_eur_rates = null;var cur_date = '';
+var CUR_LIST = ['USD','EUR','GBP','JPY','CHF','CAD','AUD','CNY','INR','MXN','BRL','ZAR','SGD','NOK','SEK','DKK','PLN','TRY'];
+
+function buildCurDD(ddId, inputId, defaultVal) {
+  var popup = document.getElementById(ddId);
+  var html = '';
+  CUR_LIST.forEach(function(c) {
+    var on = c === defaultVal ? ' on' : '';
+    html += '<button type="button" class="dd-opt' + on + '" onclick="pickDD(event,\'' + inputId + '\',\'' + c + '\',\'' + c + '\')">' + c + '</button>';
+  });
+  popup.innerHTML = html;
+}
+buildCurDD('dd-cur-from', 'cur-from', 'EUR');
+buildCurDD('dd-cur-to', 'cur-to', 'USD');
+
+function toggleDD(e, ddId) {
+  e.stopPropagation();
+  document.querySelectorAll('.dd-popup').forEach(function(d) { if (d.id !== ddId) d.style.display = 'none'; });
+  var dd = document.getElementById(ddId);
+  dd.style.display = dd.style.display === 'block' ? 'none' : 'block';
+}
+function pickDD(e, inputId, value, label) {
+  e.stopPropagation();
+  document.getElementById(inputId).value = value;
+  document.getElementById(inputId + '-label').textContent = label;
+  var popup = e.target.closest('.dd-popup');
+  popup.querySelectorAll('.dd-opt').forEach(function(o) { o.classList.remove('on'); });
+  e.target.classList.add('on');
+  popup.style.display = 'none';
+  convertCur();
+}
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.dd-popup') && !e.target.closest('.dd-input')) {
+    document.querySelectorAll('.dd-popup').forEach(function(d) { d.style.display = 'none'; });
+  }
+});
+
+function fetchRates(){  fetch('https://api.frankfurter.app/latest?from=EUR')    .then(function(r){return r.json();})    .then(function(data){      cur_eur_rates = data.rates;      cur_eur_rates['EUR'] = 1;      cur_date = data.date;      document.getElementById('cur-date').textContent = cur_date;      convertCur();    })    .catch(function(){      document.getElementById('cur-result').textContent = 'Error';      document.getElementById('cur-lbl').textContent = 'Could not fetch rates. Please try again later.';    });}function convertCur(){  if (!cur_eur_rates) { fetchRates(); return; }  var amt = parseFloat(document.getElementById('cur-amt').value) || 0;  var from = document.getElementById('cur-from').value;  var to = document.getElementById('cur-to').value;  var rateFrom = cur_eur_rates[from] || 1;  var rateTo = cur_eur_rates[to] || 1;  var rate = rateTo / rateFrom;  var result = amt * rate;  document.getElementById('cur-result').textContent = result.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) + ' ' + to;  document.getElementById('cur-lbl').textContent = amt.toLocaleString() + ' ' + from + ' equals';  document.getElementById('cur-rate').textContent = '1 ' + from + ' = ' + rate.toFixed(4) + ' ' + to;}function swapCur(){
+  var f = document.getElementById('cur-from');
+  var t = document.getElementById('cur-to');
+  var tmp = f.value; f.value = t.value; t.value = tmp;
+  document.getElementById('cur-from-label').textContent = f.value;
+  document.getElementById('cur-to-label').textContent = t.value;
+  document.querySelectorAll('#dd-cur-from .dd-opt').forEach(function(o){ o.classList.toggle('on', o.textContent === f.value); });
+  document.querySelectorAll('#dd-cur-to .dd-opt').forEach(function(o){ o.classList.toggle('on', o.textContent === t.value); });
+  convertCur();
+}fetchRates();
 function toggleFaq(b){var i=b.parentElement;i.classList.toggle("open");b.setAttribute("aria-expanded",i.classList.contains("open"))}
 function setTheme(mode){if(mode==='light'){document.documentElement.setAttribute('data-theme','light')}else{document.documentElement.removeAttribute('data-theme')}try{localStorage.setItem('theme',mode)}catch(e){}updateThemeSwitch();}function updateThemeSwitch(){var mode=document.documentElement.getAttribute('data-theme')==='light'?'light':'dark';document.querySelectorAll('.ts-opt').forEach(function(b){b.classList.toggle('on',b.dataset.mode===mode)});}updateThemeSwitch();
 </script>
@@ -384,14 +457,14 @@ function setTheme(mode){if(mode==='light'){document.documentElement.setAttribute
     var btns = document.createElement('div');
     btns.className = 'num-btns';
     var up = document.createElement('button');
-    up.className = 'num-btn'; up.type = 'button'; up.innerHTML = '&#9650;';
+    up.className = 'num-btn'; up.type = 'button'; up.innerHTML = '▲';
     up.addEventListener('click', function(){
       var step = parseFloat(inp.step)||1;
       inp.value = (parseFloat(inp.value||0)+step).toString();
       inp.dispatchEvent(new Event('input'));
     });
     var dn = document.createElement('button');
-    dn.className = 'num-btn'; dn.type = 'button'; dn.innerHTML = '&#9660;';
+    dn.className = 'num-btn'; dn.type = 'button'; dn.innerHTML = '▼';
     dn.addEventListener('click', function(){
       var step = parseFloat(inp.step)||1;
       inp.value = (parseFloat(inp.value||0)-step).toString();
