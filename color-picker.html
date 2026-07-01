@@ -4,11 +4,9 @@
 <script>(function(){try{var t=localStorage.getItem("theme");if(t==="light")document.documentElement.setAttribute("data-theme","light");}catch(e){}})();</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cloistr — Free online tools that just work</title>
-<meta name="description" content="Free online tools for freelancers and small businesses: VAT calculator, invoice generator, freelance tax estimator, break-even calculator, password generator and more.">
-<link rel="canonical" href="https://cloistr.io/">
-<meta property="og:title" content="Cloistr — Free online tools that just work">
-<meta property="og:type" content="website">
+<title>Free Color Picker — HEX, RGB and HSL Color Codes | Cloistr</title>
+<meta name="description" content="Free online color picker. Pick any color and instantly copy its HEX, RGB and HSL codes. No signup, no install, works in any browser.">
+<link rel="canonical" href="https://cloistr.io/color-picker.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;450;500;600&display=swap" rel="stylesheet">
@@ -162,9 +160,6 @@ footer .logo{justify-content:center;margin-bottom:10px;font-size:16px}
   .search{max-width:none;order:4;flex-basis:100%;margin:6px 0 0}
   .nav{flex-wrap:wrap}
   .hero{padding-top:44px}
-
-  .panel > div[style*="display:flex;gap:12px"]{flex-direction:column!important}
-  .panel{padding:20px!important}
 }
 
 .meta-date{font-size:12px;color:var(--text-faint);margin:-18px 0 24px}
@@ -334,18 +329,54 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 .btn:hover{opacity:.88}
 .btn-ghost{background:var(--surface-2);color:var(--text);border:1px solid var(--border)}
 
+/* DID YOU KNOW */
+.dyk{background:rgba(61,220,151,.08);border:1px solid rgba(61,220,151,.25);border-radius:var(--radius);padding:16px 20px;margin-bottom:24px}
+.dyk-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--accent-strong);display:block;margin-bottom:8px;font-family:var(--font-display)}
+.dyk p{margin:0;font-size:14px;color:var(--text-soft);line-height:1.65}
+
+/* CUSTOM DROPDOWN (replaces native select where full control is needed) */
+.dd-input{display:flex;align-items:center;justify-content:space-between;gap:8px;height:46px;padding:0 14px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg);color:var(--text);cursor:pointer;font-size:15px;font-family:inherit;transition:border-color .15s;user-select:none;box-sizing:border-box}
+.dd-input:hover{border-color:var(--accent)}
+.dd-input svg{color:var(--text-faint);flex-shrink:0;transition:transform .15s}
+.dd-popup{position:absolute;top:calc(100% + 6px);left:0;right:0;z-index:200;background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:6px;box-shadow:0 8px 32px rgba(0,0,0,.3)}
+.dd-opt{display:block;width:100%;text-align:left;padding:10px 12px;border:none;border-radius:8px;background:none;color:var(--text-dim);font-size:14px;font-family:inherit;cursor:pointer;transition:background .12s,color .12s}
+.dd-opt:hover{background:var(--surface-2);color:var(--title)}
+.dd-opt.on{background:var(--accent);color:var(--accent-text);font-weight:600}
+
+/* MOBILE: stack flex rows inside panels, tighten padding */
+@media(max-width:640px){
+  .panel > div[style*="display:flex;gap:12px"]{flex-direction:column!important}
+  .panel{padding:20px!important}
+}
+
+.cp-canvas{width:100%;height:220px;border-radius:10px;cursor:crosshair;display:block;touch-action:none}
+.cp-hue{width:100%;height:20px;border-radius:10px;cursor:pointer;border:none;outline:none;margin:12px 0 0;display:block;background:linear-gradient(to right,#f00,#ff0,#0f0,#0ff,#00f,#f0f,#f00);touch-action:none}
+.cp-swatch{width:56px;height:56px;border-radius:10px;border:2px solid var(--border);flex-shrink:0}
+.cp-codes{display:flex;flex-direction:column;gap:8px;flex:1}
+.cp-code-row{display:flex;align-items:center;gap:8px}
+.cp-code-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text-faint);width:32px;flex-shrink:0}
+.cp-code-val{flex:1;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:13px;font-family:monospace;color:var(--text);outline:none;transition:border-color .15s}
+.cp-code-val:focus{border-color:var(--accent)}
+.cp-copy-btn{padding:6px 12px;border-radius:8px;border:1.5px solid var(--border);background:var(--surface-2);color:var(--text-dim);font-size:12px;font-family:inherit;cursor:pointer;transition:all .15s;white-space:nowrap;flex-shrink:0}
+.cp-copy-btn:hover{border-color:var(--accent);color:var(--accent)}
+.cp-copy-btn.copied{border-color:var(--accent);background:rgba(61,220,151,.12);color:var(--accent)}
+.cp-palette{display:grid;grid-template-columns:repeat(10,1fr);gap:6px;margin-top:16px}
+.cp-swatch-btn{aspect-ratio:1;border-radius:6px;border:2px solid transparent;cursor:pointer;transition:transform .12s,border-color .12s}
+.cp-swatch-btn:hover{transform:scale(1.15);border-color:var(--border-hover)}
+@media(max-width:640px){.cp-palette{grid-template-columns:repeat(8,1fr)}}
 </style>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Cloistr","url":"https://cloistr.io/"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Color picker","url":"https://cloistr.io/color-picker.html","applicationCategory":"DesignApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://cloistr.io/"},{"@type":"ListItem","position":2,"name":"Color picker","item":"https://cloistr.io/color-picker.html"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the difference between HEX, RGB and HSL?","acceptedAnswer":{"@type":"Answer","text":"HEX is a compact hexadecimal representation used in HTML and CSS. RGB defines a color by its red, green and blue components (0-255 each). HSL defines a color by hue (0-360 degrees), saturation and lightness, which is often more intuitive for designers."}},{"@type":"Question","name":"Can I type a HEX code directly?","acceptedAnswer":{"@type":"Answer","text":"Yes. Type or paste any HEX code into the HEX field and the picker, RGB and HSL values will all update automatically."}},{"@type":"Question","name":"Does this work without internet?","acceptedAnswer":{"@type":"Answer","text":"Yes. Once the page loads, everything runs locally in your browser with no server calls."}}]}</script>
 </head>
 <body>
-
 <nav class="nav">
   <a class="logo" href="/"><span class="dot"></span>Cloistr</a>
+  <a class="nav-blog" href="/blog.html">Blog</a>
   <div class="search">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-    <input id="searchInput" placeholder="Search tools" oninput="filterTools(this.value)">
+    <input placeholder="Search tools&hellip;" onfocus="location.href='/'">
   </div>
-  <a class="nav-blog" href="blog.html">Blog</a>
   <div class="nav-right">
     <div class="theme-switch" role="group">
       <button class="ts-opt" data-mode="light" onclick="setTheme('light')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
@@ -354,70 +385,66 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
     <span class="pill">100% free</span>
   </div>
 </nav>
+<div class="nav-strip"><div class="nav-strip-inner"><div class="feat-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg><span>Instant results</span></div><div class="feat-divider"></div><div class="feat-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span>Data stays in your browser</span></div><div class="feat-divider"></div><div class="feat-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><path d="M19 8v6M22 11h-6"/></svg><span>No account required</span></div><div class="feat-divider"></div><div class="feat-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg><span>Works on any device</span></div></div></div>
 
-<div class="nav-strip">
-  <div class="nav-strip-inner">
-    <div class="feat-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg><span>Instant results</span></div>
-    <div class="feat-divider"></div>
-    <div class="feat-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span>Data stays in your browser</span></div>
-    <div class="feat-divider"></div>
-    <div class="feat-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><path d="M19 8v6M22 11h-6"/></svg><span>No account required</span></div>
-    <div class="feat-divider"></div>
-    <div class="feat-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg><span>Works on any device</span></div>
-  </div>
+<main class="tool-main">
+<nav class="crumb" aria-label="Breadcrumb">
+  <a href="/">Home</a>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+  <span>Color picker</span>
+</nav>
+<div class="tool-head">
+  <div class="ico i-purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="10.5" r="2.5"/><circle cx="8.5" cy="7.5" r="2.5"/><circle cx="6.5" cy="12.5" r="2.5"/><path d="M12 20c-5 0-8-4-8-8"/><circle cx="12" cy="20" r="2"/></svg></div>
+  <div><h1>Color picker</h1><p class="lead">Pick any color and copy its HEX, RGB and HSL codes instantly.</p></div>
+</div>
+<div class="dyk">
+  <span class="dyk-label">Did you know?</span>
+  <p>HSL (Hue, Saturation, Lightness) is often more intuitive than RGB for designers because you can easily make a color lighter or darker just by adjusting the lightness value without affecting the hue.</p>
 </div>
 
-<section class="hero">
-  <div class="eyebrow">No signup &middot; No downloads &middot; No nonsense</div>
-  <h1>Small tools that <em>just work</em>.</h1>
-  <p>A growing collection of fast, free utilities for freelancers, small businesses and everyday tasks. Everything runs right in your browser.</p>
-  <div class="hero-stats">
-    <span><b id="toolCount">17</b> tools</span>
-    <span><b>0</b> sign-ups</span>
-    <span><b>100%</b> free</span>
-  </div>
-</section>
-
-<div class="wrap" id="toolGrid"></div>
-
-<section class="how-section">
-  <div class="how-inner">
-    <div class="section-eyebrow">How it works</div>
-    <h2 class="section-title">In and out in seconds</h2>
-    <div class="how-grid">
-      <div class="how-step">
-        <div class="how-num">01</div>
-        <h3>Pick a tool</h3>
-        <p>Browse the collection or search by name. Every tool is free and open &mdash; no account, no paywall.</p>
+<div class="panel">
+  <canvas id="cp-canvas" class="cp-canvas"></canvas>
+  <canvas id="cp-hue" class="cp-hue" height="20"></canvas>
+  <div style="display:flex;gap:14px;margin-top:16px;align-items:center">
+    <div class="cp-swatch" id="cp-swatch"></div>
+    <div class="cp-codes">
+      <div class="cp-code-row">
+        <span class="cp-code-label">HEX</span>
+        <input class="cp-code-val" id="cp-hex" value="#3ddc97" oninput="hexInput(this.value)">
+        <button class="cp-copy-btn" onclick="copyCode('cp-hex',this)">Copy</button>
       </div>
-      <div class="how-step">
-        <div class="how-num">02</div>
-        <h3>Enter your data</h3>
-        <p>Fill in your numbers, text or settings. Everything processes instantly in your browser &mdash; nothing is sent to a server.</p>
+      <div class="cp-code-row">
+        <span class="cp-code-label">RGB</span>
+        <input class="cp-code-val" id="cp-rgb" value="rgb(61, 220, 151)" readonly>
+        <button class="cp-copy-btn" onclick="copyCode('cp-rgb',this)">Copy</button>
       </div>
-      <div class="how-step">
-        <div class="how-num">03</div>
-        <h3>Get your result</h3>
-        <p>Copy, download or use the output directly. Done. No steps, no friction, no follow-up emails.</p>
+      <div class="cp-code-row">
+        <span class="cp-code-label">HSL</span>
+        <input class="cp-code-val" id="cp-hsl" value="hsl(154, 68%, 55%)" readonly>
+        <button class="cp-copy-btn" onclick="copyCode('cp-hsl',this)">Copy</button>
       </div>
     </div>
   </div>
+  <div class="cp-palette" id="cp-palette"></div>
+</div>
+
+<article class="content">
+  <h2>Color formats explained</h2>
+  <ul class="key-points">
+    <li><strong>HEX</strong> &mdash; compact 6-character hexadecimal code used in HTML and CSS. Example: #3ddc97.</li>
+    <li><strong>RGB</strong> &mdash; defines a color by red, green and blue channels, each from 0 to 255. Example: rgb(61, 220, 151).</li>
+    <li><strong>HSL</strong> &mdash; defines a color by hue (0&ndash;360&deg;), saturation and lightness. More intuitive for design work.</li>
+  </ul>
+</article>
+
+<section class="content">
+  <h2>FAQ</h2>
+  <details class="faq-item"><summary>What is the difference between HEX, RGB and HSL?<span class="faq-plus" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span></summary><p>HEX is a compact hexadecimal representation used in HTML and CSS. RGB defines a color by red, green and blue components (0&ndash;255). HSL defines a color by hue (0&ndash;360 degrees), saturation and lightness, which is more intuitive for designers.</p></details>
+  <details class="faq-item"><summary>Can I type a HEX code directly?<span class="faq-plus" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span></summary><p>Yes. Type or paste any HEX code into the HEX field and the picker, RGB and HSL values will all update automatically.</p></details>
+  <details class="faq-item"><summary>Does this work without internet?<span class="faq-plus" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span></summary><p>Yes. Once the page loads everything runs locally in your browser with no server calls.</p></details>
 </section>
 
-<section class="home-faq">
-  <div class="how-inner">
-    <div class="section-eyebrow">FAQ</div>
-    <h2 class="section-title">Frequently asked questions</h2>
-    <div class="home-faq-list" style="margin:0 auto">
-      <details class="faq-item"><summary>Are all tools really free?<span class="faq-plus" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span></summary><p>Yes. Every tool on Cloistr is completely free to use. No premium tier, no credit card, no trial period.</p></details>
-      <details class="faq-item"><summary>Do I need to create an account?<span class="faq-plus" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span></summary><p>No account, no registration, no email address. Just open a tool and use it.</p></details>
-      <details class="faq-item"><summary>Is my data safe?<span class="faq-plus" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span></summary><p>All calculations happen directly in your browser. Your data is never sent to our servers.</p></details>
-      <details class="faq-item"><summary>Can I use these tools for commercial purposes?<span class="faq-plus" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span></summary><p>Absolutely. Cloistr is designed for freelancers and small businesses. Use it for any purpose.</p></details>
-      <details class="faq-item"><summary>How often are new tools added?<span class="faq-plus" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span></summary><p>New tools are added regularly, focused on what freelancers and small businesses actually need.</p></details>
-    </div>
-  </div>
-</section>
-
+</main>
 <footer class="site-footer">
   <div class="footer-inner">
     <div class="footer-brand">
@@ -427,92 +454,270 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
     <div class="footer-links">
       <div class="footer-col">
         <div class="footer-col-title">Company</div>
-        <a href="blog.html">Blog</a>
+        <a href="/blog.html">Blog</a>
         <a href="#">About</a>
         <a href="#">Privacy policy</a>
         <a href="#">Terms of use</a>
       </div>
     </div>
   </div>
-  <div class="footer-bottom">
-    <span>&copy; 2026 Cloistr. All rights reserved.</span>
-  </div>
+  <div class="footer-bottom"><span>&copy; 2026 Cloistr. All rights reserved.</span></div>
 </footer>
 
 <script>
-var TOOLS = [
-  {slug:"vat-calculator",        name:"VAT calculator",          desc:"Add or remove VAT, get net and gross instantly.",       color:"teal",   tag:"hot", icon:"tax"},
-  {slug:"loan-calculator",       name:"Loan calculator",         desc:"Monthly payment, total interest and amortization.",     color:"amber",  tag:"new", icon:"loan"},
-  {slug:"email-signature-generator",name:"Email signature generator",desc:"Clean HTML signature, ready to paste into any inbox.", color:"purple", tag:"new", icon:"sig2"},
-  {slug:"percentage-calculator",  name:"Percentage calculator",    desc:"Percent of, percent change, or reverse a percentage.",  color:"teal",   tag:"",    icon:"percent"},
-  {slug:"case-converter",         name:"Case converter",          desc:"camelCase, snake_case, kebab-case, PascalCase and more.",color:"blue",   tag:"",    icon:"case"},
-  {slug:"color-picker",           name:"Color picker",            desc:"Pick any color and copy its HEX, RGB and HSL codes.",   color:"purple", tag:"",    icon:"color"},
-  {slug:"json-formatter",         name:"JSON formatter",          desc:"Format, validate and minify JSON instantly.",           color:"green",  tag:"",    icon:"json"},
-  {slug:"unit-converter",         name:"Unit converter",          desc:"Length, weight, temperature, area, volume and speed.",  color:"coral",  tag:"",    icon:"unit"},
-  {slug:"currency-converter",    name:"Currency converter",      desc:"Live exchange rates for 18 major currencies.",          color:"blue",   tag:"new", icon:"currency"},
-  {slug:"invoice-generator",     name:"Invoice generator",       desc:"Create a professional invoice in seconds, no account.", color:"blue",   tag:"hot", icon:"sig"},
-  {slug:"break-even-calculator", name:"Break-even calculator",   desc:"Units and revenue needed to cover your fixed costs.",   color:"green",  tag:"new", icon:"margin"},
-  {slug:"freelance-tax-estimator",name:"Freelance tax estimator",desc:"Quarterly tax estimates for self-employed workers.",    color:"amber",  tag:"new", icon:"calc"},
-  {slug:"profit-margin-calculator",name:"Profit margin calculator",desc:"Cost, price, markup and margin in one place.",        color:"green",  tag:"",   icon:"chart"},
-  {slug:"word-counter",          name:"Word counter",            desc:"Words, characters, sentences and reading time.",        color:"coral",  tag:"",   icon:"text"},
-  {slug:"contrast-checker",      name:"Contrast checker",        desc:"WCAG AA and AAA contrast ratio for any two colors.",   color:"blue",   tag:"new", icon:"eye"},
-  {slug:"qr-code-generator",     name:"QR code generator",       desc:"Turn any link or text into a scannable QR code.",      color:"teal",   tag:"new", icon:"qr"},
-  {slug:"password-generator",    name:"Password generator",      desc:"Strong, random, customizable passwords.",              color:"gray",   tag:"",   icon:"lock"}
-];
+var hue = 154;
+var satPct = 0.72;
+var lightPct = 0.45;
+var dragging = false;
+var hueDragging = false;
 
-var PATHS = {
-  tax:      '<path d="M9 14l6-6"/><circle cx="9.5" cy="8.5" r="1.5"/><circle cx="14.5" cy="13.5" r="1.5"/><rect x="3" y="3" width="18" height="18" rx="3"/>',
-  loan:     '<path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6"/>',
-  sig2:     '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
-  percent:  '<path d="M19 5 5 19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/>',
-  case:     '<polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/>',
-  color:    '<circle cx="13.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="10.5" r="2.5"/><circle cx="8.5" cy="7.5" r="2.5"/><circle cx="6.5" cy="12.5" r="2.5"/><path d="M12 20c-5 0-8-4-8-8"/><circle cx="12" cy="20" r="2"/>',
-  json:     '<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>',
-  unit:     '<path d="M7 16V4M3 8l4-4 4 4M17 8v12M21 16l-4 4-4-4"/>',
-  currency: '<circle cx="12" cy="12" r="9"/><path d="M14.8 9a3 3 0 0 0-5.6 1.2c0 3 5.6 1.8 5.6 4.6a3 3 0 0 1-5.6 1.2M12 6v1m0 10v1"/>',
-  sig:      '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
-  margin:   '<path d="M3 3v18h18M7 14l3-3 3 3 4-5"/>',
-  calc:     '<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 8h6M9 12h2M13 12h2M9 16h2M13 16h2"/>',
-  chart:    '<path d="M3 3v18h18M7 14l3-3 3 3 4-5"/>',
-  text:     '<path d="M4 6h16M4 12h16M4 18h10"/>',
-  eye:      '<circle cx="12" cy="12" r="3"/><path d="M3 12s3-7 9-7 9 7 9 7-3 7-9 7-9-7-9-7z"/>',
-  qr:       '<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3M21 14v3M14 21h3M21 18v3"/>',
-  lock:     '<rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>'
-};
-
-function icon(name) {
-  return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' + (PATHS[name] || '') + '</svg>';
+function hexToRgb(hex) {
+  hex = hex.replace('#', '');
+  if (hex.length === 3) hex = hex[0]+hex[0]+hex[1]+hex[1]+hex[2]+hex[2];
+  if (hex.length !== 6) return null;
+  var n = parseInt(hex, 16);
+  return { r: (n >> 16) & 255, g: (n >> 8) & 255, b: n & 255 };
 }
 
-function renderGrid(filter) {
-  filter = filter || '';
-  var f = filter.toLowerCase();
-  var list = TOOLS.filter(function(t) {
-    if (!f) return true;
-    return t.name.toLowerCase().indexOf(f) > -1 || t.desc.toLowerCase().indexOf(f) > -1;
-  });
-  var h = '';
-  if (list.length === 0) {
-    h = '<div style="text-align:center;color:var(--text-faint);padding:60px 0">No tools match that search yet.</div>';
-  } else {
-    h = '<div class="grid">';
-    for (var i = 0; i < list.length; i++) {
-      var t = list[i];
-      var tagSpan = t.tag ? '<span class="tag ' + t.tag + '">' + t.tag + '</span>' : '';
-      h += '<a class="card" href="' + t.slug + '.html">'
-        + tagSpan
-        + '<div class="ico i-' + t.color + '">' + icon(t.icon) + '</div>'
-        + '<h3>' + t.name + '</h3>'
-        + '<p>' + t.desc + '</p>'
-        + '<span class="arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>'
-        + '</a>';
+function rgbToHex(r, g, b) {
+  return '#' + [r, g, b].map(function(v) { return v.toString(16).padStart(2, '0'); }).join('');
+}
+
+function rgbToHsl(r, g, b) {
+  r /= 255; g /= 255; b /= 255;
+  var max = Math.max(r, g, b), min = Math.min(r, g, b);
+  var h, s, l = (max + min) / 2;
+  if (max === min) { h = s = 0; }
+  else {
+    var d = max - min;
+    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+    switch(max) {
+      case r: h = ((g - b) / d + (g < b ? 6 : 0)) / 6; break;
+      case g: h = ((b - r) / d + 2) / 6; break;
+      case b: h = ((r - g) / d + 4) / 6; break;
     }
-    h += '</div>';
   }
-  document.getElementById('toolGrid').innerHTML = h;
+  return { h: Math.round(h * 360), s: Math.round(s * 100), l: Math.round(l * 100) };
 }
 
-function filterTools(v) { renderGrid(v); }
+function hslToRgb(h, s, l) {
+  s /= 100; l /= 100;
+  var c = (1 - Math.abs(2 * l - 1)) * s;
+  var x = c * (1 - Math.abs((h / 60) % 2 - 1));
+  var m = l - c / 2;
+  var r, g, b;
+  if (h < 60)      { r=c; g=x; b=0; }
+  else if (h < 120){ r=x; g=c; b=0; }
+  else if (h < 180){ r=0; g=c; b=x; }
+  else if (h < 240){ r=0; g=x; b=c; }
+  else if (h < 300){ r=x; g=0; b=c; }
+  else             { r=c; g=0; b=x; }
+  return { r: Math.round((r+m)*255), g: Math.round((g+m)*255), b: Math.round((b+m)*255) };
+}
+
+function drawCanvas() {
+  var c = document.getElementById('cp-canvas');
+  var ctx = c.getContext('2d');
+  var w = c.width, h = c.height;
+  ctx.clearRect(0, 0, w, h);
+  var baseColor = 'hsl(' + hue + ',100%,50%)';
+  var gradH = ctx.createLinearGradient(0, 0, w, 0);
+  gradH.addColorStop(0, '#fff');
+  gradH.addColorStop(1, baseColor);
+  ctx.fillStyle = gradH;
+  ctx.fillRect(0, 0, w, h);
+  var gradV = ctx.createLinearGradient(0, 0, 0, h);
+  gradV.addColorStop(0, 'rgba(0,0,0,0)');
+  gradV.addColorStop(1, 'rgba(0,0,0,1)');
+  ctx.fillStyle = gradV;
+  ctx.fillRect(0, 0, w, h);
+  var cx = satPct * w;
+  var cy = (1 - lightPct) * h;
+  ctx.beginPath();
+  ctx.arc(cx, cy, 7, 0, Math.PI * 2);
+  ctx.strokeStyle = '#fff';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.arc(cx, cy, 5, 0, Math.PI * 2);
+  ctx.strokeStyle = 'rgba(0,0,0,.4)';
+  ctx.lineWidth = 1;
+  ctx.stroke();
+}
+
+function drawHueBar() {
+  var c = document.getElementById('cp-hue');
+  var ctx = c.getContext('2d');
+  c.width = c.offsetWidth;
+  ctx.clearRect(0, 0, c.width, c.height);
+  var grad = ctx.createLinearGradient(0, 0, c.width, 0);
+  [[0,'#f00'],[60,'#ff0'],[120,'#0f0'],[180,'#0ff'],[240,'#00f'],[300,'#f0f'],[360,'#f00']].forEach(function(stop){
+    grad.addColorStop(stop[0]/360, stop[1]);
+  });
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, c.width, c.height);
+  var x = (hue / 360) * c.width;
+  ctx.beginPath();
+  ctx.arc(x, c.height / 2, 8, 0, Math.PI * 2);
+  ctx.fillStyle = 'hsl(' + hue + ',100%,50%)';
+  ctx.fill();
+  ctx.strokeStyle = '#fff';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+}
+
+function updateFromHueSat() {
+  var s = satPct * 100;
+  var l_raw = (1 - lightPct);
+  var l = (l_raw * (1 - s / 200) + s / 200) * 100;
+  var rgb = hslToRgb(hue, s, l);
+  setColor(rgb.r, rgb.g, rgb.b, false);
+}
+
+function setColor(r, g, b, updatePicker) {
+  var hex = rgbToHex(r, g, b);
+  var hsl = rgbToHsl(r, g, b);
+  document.getElementById('cp-hex').value = hex;
+  document.getElementById('cp-rgb').value = 'rgb(' + r + ', ' + g + ', ' + b + ')';
+  document.getElementById('cp-hsl').value = 'hsl(' + hsl.h + ', ' + hsl.s + '%, ' + hsl.l + '%)';
+  document.getElementById('cp-swatch').style.background = hex;
+  if (updatePicker) {
+    hue = hsl.h;
+    satPct = hsl.s / 100;
+    lightPct = 1 - (hsl.l / 100);
+    drawCanvas();
+    drawHueBar();
+  }
+}
+
+function hexInput(val) {
+  val = val.trim();
+  if (!val.startsWith('#')) val = '#' + val;
+  var rgb = hexToRgb(val);
+  if (rgb) setColor(rgb.r, rgb.g, rgb.b, true);
+}
+
+function copyCode(id, btn) {
+  var val = document.getElementById(id).value;
+  var ta = document.createElement('textarea');
+  ta.value = val;
+  document.body.appendChild(ta);
+  ta.select();
+  document.execCommand('copy');
+  document.body.removeChild(ta);
+  var orig = btn.textContent;
+  btn.textContent = 'Copied!';
+  btn.classList.add('copied');
+  setTimeout(function() { btn.textContent = orig; btn.classList.remove('copied'); }, 1500);
+}
+
+function buildPalette() {
+  var colors = [
+    '#e63946','#f4a261','#f9c74f','#90be6d','#43aa8b',
+    '#3ddc97','#4cc9f0','#4361ee','#7209b7','#f72585',
+    '#ffffff','#e0e0e0','#aaaaaa','#666666','#333333',
+    '#1a1a2e','#16213e','#0f3460','#533483','#2d6a4f'
+  ];
+  var palette = document.getElementById('cp-palette');
+  colors.forEach(function(c) {
+    var btn = document.createElement('button');
+    btn.className = 'cp-swatch-btn';
+    btn.style.background = c;
+    btn.setAttribute('aria-label', c);
+    btn.addEventListener('click', function() {
+      var rgb = hexToRgb(c);
+      if (rgb) {
+        hue = rgbToHsl(rgb.r, rgb.g, rgb.b).h;
+        setColor(rgb.r, rgb.g, rgb.b, true);
+        drawCanvas();
+        drawHueBar();
+      }
+    });
+    palette.appendChild(btn);
+  });
+}
+
+function getPos(e, el) {
+  var rect = el.getBoundingClientRect();
+  var clientX = e.touches ? e.touches[0].clientX : e.clientX;
+  var clientY = e.touches ? e.touches[0].clientY : e.clientY;
+  return {
+    x: Math.max(0, Math.min(1, (clientX - rect.left) / rect.width)),
+    y: Math.max(0, Math.min(1, (clientY - rect.top) / rect.height))
+  };
+}
+
+function initCanvas() {
+  var c = document.getElementById('cp-canvas');
+  c.width = c.offsetWidth;
+  c.height = c.offsetHeight;
+
+  function onMove(e) {
+    if (!dragging) return;
+    e.preventDefault();
+    var pos = getPos(e, c);
+    satPct = pos.x;
+    lightPct = 1 - pos.y;
+    drawCanvas();
+    updateFromHueSat();
+  }
+
+  c.addEventListener('mousedown', function(e) {
+    dragging = true;
+    var pos = getPos(e, c);
+    satPct = pos.x;
+    lightPct = 1 - pos.y;
+    drawCanvas();
+    updateFromHueSat();
+  });
+  c.addEventListener('touchstart', function(e) {
+    dragging = true;
+    var pos = getPos(e, c);
+    satPct = pos.x;
+    lightPct = 1 - pos.y;
+    drawCanvas();
+    updateFromHueSat();
+  }, {passive: false});
+  document.addEventListener('mousemove', onMove);
+  document.addEventListener('touchmove', onMove, {passive: false});
+  document.addEventListener('mouseup', function() { dragging = false; });
+  document.addEventListener('touchend', function() { dragging = false; });
+}
+
+function initHue() {
+  var h = document.getElementById('cp-hue');
+
+  function onHueMove(e) {
+    if (!hueDragging) return;
+    e.preventDefault();
+    var pos = getPos(e, h);
+    hue = Math.round(pos.x * 360);
+    drawCanvas();
+    drawHueBar();
+    updateFromHueSat();
+  }
+
+  h.addEventListener('mousedown', function(e) {
+    hueDragging = true;
+    var pos = getPos(e, h);
+    hue = Math.round(pos.x * 360);
+    drawCanvas();
+    drawHueBar();
+    updateFromHueSat();
+  });
+  h.addEventListener('touchstart', function(e) {
+    hueDragging = true;
+    var pos = getPos(e, h);
+    hue = Math.round(pos.x * 360);
+    drawCanvas();
+    drawHueBar();
+    updateFromHueSat();
+  }, {passive: false});
+  document.addEventListener('mousemove', onHueMove);
+  document.addEventListener('touchmove', onHueMove, {passive: false});
+  document.addEventListener('mouseup', function() { hueDragging = false; });
+  document.addEventListener('touchend', function() { hueDragging = false; });
+}
 
 function setTheme(mode) {
   if (mode === 'light') document.documentElement.setAttribute('data-theme', 'light');
@@ -522,23 +727,20 @@ function setTheme(mode) {
 }
 function updateThemeSwitch() {
   var mode = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
-  var btns = document.querySelectorAll('.ts-opt');
-  for (var i = 0; i < btns.length; i++) {
-    btns[i].classList.toggle('on', btns[i].dataset.mode === mode);
-  }
+  document.querySelectorAll('.ts-opt').forEach(function(b) { b.classList.toggle('on', b.dataset.mode === mode); });
 }
 
-document.querySelector('.home-faq-list').addEventListener('click', function(e) {
-  var clicked = e.target.closest('details');
-  if (!clicked) return;
-  document.querySelectorAll('.home-faq-list details[open]').forEach(function(d) {
-    if (d !== clicked) d.removeAttribute('open');
-  });
-});
-
-document.getElementById('toolCount').textContent = TOOLS.length;
-renderGrid();
-updateThemeSwitch();
+(function() {
+  updateThemeSwitch();
+  buildPalette();
+  initCanvas();
+  initHue();
+  drawCanvas();
+  drawHueBar();
+  var rgb = hexToRgb('#3ddc97');
+  if (rgb) setColor(rgb.r, rgb.g, rgb.b, false);
+  document.getElementById('cp-swatch').style.background = '#3ddc97';
+})();
 </script>
 </body>
 </html>
