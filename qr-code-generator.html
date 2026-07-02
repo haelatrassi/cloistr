@@ -56,7 +56,9 @@ button{font-family:inherit;cursor:pointer}
 
 h1,h2,h3,.logo,.card h3,.tool-head h1,.tool-head h2{color:var(--title)}
 
-.nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:20px;padding:14px 28px;background:var(--bg);border-bottom:1px solid var(--border)}
+.nav{position:sticky;top:0;z-index:50;display:flex;flex-direction:column;gap:0;padding:12px 28px 10px;background:var(--bg);border-bottom:1px solid var(--border)}
+.nav-top{display:flex;align-items:center;justify-content:space-between;width:100%;gap:16px}
+.nav-bottom{display:flex;align-items:center;gap:12px;width:100%;margin-top:8px}
 .logo{font-family:var(--font-display);font-weight:700;font-size:19px;letter-spacing:-.02em;display:flex;align-items:center;gap:9px}
 .logo .dot{width:11px;height:11px;border-radius:3px;background:var(--accent);display:inline-block;transform:rotate(45deg)}
 .search{flex:1;max-width:420px;margin:0 auto;display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--border);border-radius:99px;padding:9px 16px;transition:border-color .15s}
@@ -213,7 +215,7 @@ footer .logo{justify-content:center;margin-bottom:10px;font-size:16px}
 
 /* FOOTER */
 .site-footer{border-top:1px solid var(--border);margin-top:0}
-.footer-inner{max-width:1080px;margin:0 auto;padding:48px 28px 36px;display:flex;gap:60px;flex-wrap:wrap}
+.footer-inner{max-width:1080px;margin:0 auto;padding:48px 28px 36px;display:flex;gap:60px;flex-wrap:wrap;justify-content:space-between;align-items:flex-start}
 .footer-brand{flex:1;min-width:220px;max-width:300px}
 .footer-tagline{font-size:13px;color:var(--text-faint);line-height:1.6;margin:12px 0 0}
 .footer-links{display:flex;gap:48px;flex-wrap:wrap}
@@ -356,9 +358,20 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 </head>
 <body>
 <nav class="nav">
-<a class="logo" href="/"><span class="dot"></span>Cloistr</a>
-<div class="search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><input id="searchInput" placeholder="Search tools…" oninput="if(window.filterTools)filterTools(this.value)" onfocus="if(!window.filterTools)location.href='/'"></div>
-<a class="nav-blog" href="/blog.html">Blog</a><div class="nav-right"><div class="theme-switch" role="group" aria-label="Theme"><button class="ts-opt" data-mode="light" onclick="setTheme('light')" aria-label="Light theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button><button class="ts-opt" data-mode="dark" onclick="setTheme('dark')" aria-label="Dark theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg></button></div><span class="pill">100% free</span></div>
+  <div class="nav-top">
+    <a class="logo" href="/"><span class="dot"></span>Cloistr</a>
+    <div class="nav-right">
+      <div class="theme-switch" role="group" aria-label="Theme">
+        <button class="ts-opt" data-mode="light" onclick="setTheme('light')" aria-label="Light theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+        <button class="ts-opt" data-mode="dark" onclick="setTheme('dark')" aria-label="Dark theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg></button>
+      </div>
+      <span class="pill">100% free</span>
+    </div>
+  </div>
+  <div class="nav-bottom">
+    <div class="search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><input id="searchInput" placeholder="Search tools…" oninput="if(window.filterTools)filterTools(this.value)" onfocus="if(!window.filterTools)location.href='/'"></div>
+    <a class="nav-blog" href="/blog.html">Blog</a>
+  </div>
 </nav>
 <div class="nav-strip"><div class="nav-strip-inner"><div class="feat-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg><span>Instant results</span></div><div class="feat-divider"></div><div class="feat-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span>Data stays in your browser</span></div><div class="feat-divider"></div><div class="feat-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><path d="M19 8v6M22 11h-6"/></svg><span>No account required</span></div><div class="feat-divider"></div><div class="feat-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg><span>Works on any device</span></div></div></div>
 <main class="tool-main">
@@ -366,18 +379,18 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 <div class="tool-head"><div class="ico i-teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3M21 14v.01M14 21h3M21 17v4"/></svg></div><h1>QR code generator</h1></div>
 <p class="lead">Turn any link, text or contact info into a scannable QR code.</p>
 <div class="quick-answer"><span class="qa-label">Did you know?</span><p>Type or paste any text or URL into the box above and a <strong>QR code is generated instantly</strong>. Pick the size and error correction level, then click <strong>Download as PNG</strong> to save it. Works for websites, contact cards, WiFi passwords, payment links and more.</p></div>
-<div class="panel"><div class="field"><label>Text or URL</label><textarea id="qr-input" rows="3" oninput="generateQR()" placeholder="Type or paste anything...">https://cloistr.io</textarea></div><div style="display:flex;gap:12px">
-<div class="field" style="flex:1;margin-bottom:0;position:relative">
-  <label>Size</label>
-  <div class="dd-input" onclick="toggleDD(event,'dd-size')">
-    <span id="qr-size-label">Medium</span>
+<div class="panel"><div class="field"><label>Text or URL</label><textarea id="qr-input" rows="3" oninput="generateQR()" placeholder="Type or paste anything...">https://cloistr.io</textarea></div><div class="field" style="position:relative">
+  <label>Error correction</label>
+  <div class="dd-input" onclick="toggleDD(event,'dd-ec')">
+    <span id="qr-ec-label">Medium (15%)</span>
     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
   </div>
-  <input type="hidden" id="qr-size" value="320">
-  <div id="dd-size" class="dd-popup" style="display:none">
-    <button type="button" class="dd-opt on" onclick="pickDD(event,'qr-size','200','Small')">Small</button>
-    <button type="button" class="dd-opt" onclick="pickDD(event,'qr-size','320','Medium')">Medium</button>
-    <button type="button" class="dd-opt" onclick="pickDD(event,'qr-size','480','Large')">Large</button>
+  <input type="hidden" id="qr-ec" value="M">
+  <div id="dd-ec" class="dd-popup" style="display:none">
+    <button type="button" class="dd-opt" onclick="pickDD(event,'qr-ec','L','Low (7%)')">Low (7%)</button>
+    <button type="button" class="dd-opt on" onclick="pickDD(event,'qr-ec','M','Medium (15%)')">Medium (15%)</button>
+    <button type="button" class="dd-opt" onclick="pickDD(event,'qr-ec','Q','Quartile (25%)')">Quartile (25%)</button>
+    <button type="button" class="dd-opt" onclick="pickDD(event,'qr-ec','H','High (30%)')">High (30%)</button>
   </div>
 </div>
 <div class="field" style="flex:1;margin-bottom:0;position:relative">
@@ -397,7 +410,7 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 </div><div style="text-align:center;padding:24px;background:var(--bg);border:1.5px dashed var(--border-hover);border-radius:12px;margin-top:8px"><div id="qr-canvas-wrap" style="display:inline-block"></div></div><button class="btn" onclick="downloadQR()">Download as PNG</button></div>
 <article class="content"><h2>What is a QR code?</h2><ul class="key-points"><li>A QR code is a 2D barcode that stores text, links or other data, readable by any smartphone camera.</li><li>Originally invented in 1994 for tracking car parts, QR codes are now used everywhere: payments, menus, ticketing, marketing.</li><li>Higher error correction levels make the code more reliable when partially damaged or covered.</li></ul><h2>When to use which error correction level</h2><p><strong>Low (7%)</strong>: small physical sizes, simple use, perfect printing conditions.</p><p><strong>Medium (15%)</strong>: the default, works well for most digital and printed uses.</p><p><strong>High (30%)</strong>: outdoor signs, stickers that may peel, or codes with a logo overlay.</p></article>
 <section class="content"><h2>FAQ</h2><details class="faq-item"><summary>What can I put in a QR code?<span class="faq-plus" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span></summary><p>URLs, plain text, contact details (vCard format), WiFi credentials, payment links, app store links, calendar events and more.</p></details><details class="faq-item"><summary>Do QR codes expire?<span class="faq-plus" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span></summary><p>No. A QR code is just an image — it never expires. But if it links to a URL, the code stops working if that URL goes offline.</p></details><details class="faq-item"><summary>What is error correction?<span class="faq-plus" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span></summary><p>It is built-in redundancy that lets a QR code remain scannable even when partially damaged. Higher levels = more reliable but slightly larger code.</p></details></section>
-<section class="related"><h2>Related tools</h2><div class="related-grid"></div></section>
+<section class="related"><h2>Related tools</h2><div class="related-grid"><a href="password-generator.html">Password generator →</a><a href="color-picker.html">Color picker →</a><a href="word-counter.html">Word counter →</a></div></section>
 </main>
 <footer class="site-footer"><div class="footer-inner"><div class="footer-brand"><div class="logo"><span class="dot"></span>Cloistr</div><p class="footer-tagline">Fast, free tools for freelancers and small businesses. Everything runs in your browser.</p></div><div class="footer-links"><div class="footer-col"><div class="footer-col-title">Company</div><a href="#">About</a><a href="#">Privacy policy</a><a href="#">Terms of use</a></div></div></div><div class="footer-bottom"><span>&copy; 2026 Cloistr. All rights reserved.</span></div></footer>
 <script>
@@ -426,7 +439,7 @@ document.addEventListener('click', function(e) {
   }
 });
 
-function generateQR(){  var text = document.getElementById('qr-input').value || ' ';  var size = parseInt(document.getElementById('qr-size').value);  var ec = document.getElementById('qr-ec').value;  var wrap = document.getElementById('qr-canvas-wrap');  wrap.innerHTML = '';  if (typeof QRCode === 'undefined') {    var s = document.createElement('script');    s.src = 'https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js';    s.onload = function(){ generateQR(); };    document.head.appendChild(s);    return;  }  var ecLevels = {L: QRCode.CorrectLevel.L, M: QRCode.CorrectLevel.M, Q: QRCode.CorrectLevel.Q, H: QRCode.CorrectLevel.H};  new QRCode(wrap, { text: text, width: size, height: size, correctLevel: ecLevels[ec], colorDark: '#000000', colorLight: '#ffffff' });}function downloadQR(){  var canvas = document.querySelector('#qr-canvas-wrap canvas');  if (!canvas) return;  var link = document.createElement('a');  link.download = 'qrcode.png';  link.href = canvas.toDataURL('image/png');  link.click();}generateQR();
+function generateQR(){  var text = document.getElementById('qr-input').value || ' ';  var size = 220;  var ec = document.getElementById('qr-ec').value;  var wrap = document.getElementById('qr-canvas-wrap');  wrap.innerHTML = '';  if (typeof QRCode === 'undefined') {    var s = document.createElement('script');    s.src = 'https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js';    s.onload = function(){ generateQR(); };    document.head.appendChild(s);    return;  }  var ecLevels = {L: QRCode.CorrectLevel.L, M: QRCode.CorrectLevel.M, Q: QRCode.CorrectLevel.Q, H: QRCode.CorrectLevel.H};  new QRCode(wrap, { text: text, width: size, height: size, correctLevel: ecLevels[ec], colorDark: '#000000', colorLight: '#ffffff' });}function downloadQR(){  var canvas = document.querySelector('#qr-canvas-wrap canvas');  if (!canvas) return;  var link = document.createElement('a');  link.download = 'qrcode.png';  link.href = canvas.toDataURL('image/png');  link.click();}generateQR();
 function toggleFaq(b){var i=b.parentElement;i.classList.toggle("open");b.setAttribute("aria-expanded",i.classList.contains("open"))}
 function setTheme(mode){if(mode==='light'){document.documentElement.setAttribute('data-theme','light')}else{document.documentElement.removeAttribute('data-theme')}try{localStorage.setItem('theme',mode)}catch(e){}updateThemeSwitch();}function updateThemeSwitch(){var mode=document.documentElement.getAttribute('data-theme')==='light'?'light':'dark';document.querySelectorAll('.ts-opt').forEach(function(b){b.classList.toggle('on',b.dataset.mode===mode)});}updateThemeSwitch();
 </script>
@@ -473,5 +486,17 @@ function setTheme(mode){if(mode==='light'){document.documentElement.setAttribute
   });
 })();
 </script>
+
+(function(){
+  document.querySelectorAll('.faq-item').forEach(function(item){
+    item.addEventListener('toggle', function(){
+      if(item.open){
+        document.querySelectorAll('.faq-item').forEach(function(other){
+          if(other !== item) other.removeAttribute('open');
+        });
+      }
+    });
+  });
+})();
 </body>
 </html>

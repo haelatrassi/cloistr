@@ -56,7 +56,9 @@ button{font-family:inherit;cursor:pointer}
 
 h1,h2,h3,.logo,.card h3,.tool-head h1,.tool-head h2{color:var(--title)}
 
-.nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:20px;padding:14px 28px;background:var(--bg);border-bottom:1px solid var(--border)}
+.nav{position:sticky;top:0;z-index:50;display:flex;flex-direction:column;gap:0;padding:12px 28px 10px;background:var(--bg);border-bottom:1px solid var(--border)}
+.nav-top{display:flex;align-items:center;justify-content:space-between;width:100%;gap:16px}
+.nav-bottom{display:flex;align-items:center;gap:12px;width:100%;margin-top:8px}
 .logo{font-family:var(--font-display);font-weight:700;font-size:19px;letter-spacing:-.02em;display:flex;align-items:center;gap:9px}
 .logo .dot{width:11px;height:11px;border-radius:3px;background:var(--accent);display:inline-block;transform:rotate(45deg)}
 .search{flex:1;max-width:420px;margin:0 auto;display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--border);border-radius:99px;padding:9px 16px;transition:border-color .15s}
@@ -214,7 +216,7 @@ footer .logo{justify-content:center;margin-bottom:10px;font-size:16px}
 
 /* FOOTER */
 .site-footer{border-top:1px solid var(--border);margin-top:0}
-.footer-inner{max-width:1080px;margin:0 auto;padding:48px 28px 36px;display:flex;gap:60px;flex-wrap:wrap}
+.footer-inner{max-width:1080px;margin:0 auto;padding:48px 28px 36px;display:flex;gap:60px;flex-wrap:wrap;justify-content:space-between;align-items:flex-start}
 .footer-brand{flex:1;min-width:220px;max-width:300px}
 .footer-tagline{font-size:13px;color:var(--text-faint);line-height:1.6;margin:12px 0 0}
 .footer-links{display:flex;gap:48px;flex-wrap:wrap}
@@ -349,9 +351,20 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 </head>
 <body>
 <nav class="nav">
-<a class="logo" href="/"><span class="dot"></span>Cloistr</a>
-<div class="search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><input id="searchInput" placeholder="Search tools…" oninput="if(window.filterTools)filterTools(this.value)" onfocus="if(!window.filterTools)location.href='/'"></div>
-<a class="nav-blog" href="/blog.html">Blog</a><div class="nav-right"><div class="theme-switch" role="group" aria-label="Theme"><button class="ts-opt" data-mode="light" onclick="setTheme('light')" aria-label="Light theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button><button class="ts-opt" data-mode="dark" onclick="setTheme('dark')" aria-label="Dark theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg></button></div><span class="pill">100% free</span></div>
+  <div class="nav-top">
+    <a class="logo" href="/"><span class="dot"></span>Cloistr</a>
+    <div class="nav-right">
+      <div class="theme-switch" role="group" aria-label="Theme">
+        <button class="ts-opt" data-mode="light" onclick="setTheme('light')" aria-label="Light theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+        <button class="ts-opt" data-mode="dark" onclick="setTheme('dark')" aria-label="Dark theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg></button>
+      </div>
+      <span class="pill">100% free</span>
+    </div>
+  </div>
+  <div class="nav-bottom">
+    <div class="search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><input id="searchInput" placeholder="Search tools…" oninput="if(window.filterTools)filterTools(this.value)" onfocus="if(!window.filterTools)location.href='/'"></div>
+    <a class="nav-blog" href="/blog.html">Blog</a>
+  </div>
 </nav>
 <div class="nav-strip"><div class="nav-strip-inner"><div class="feat-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg><span>Instant results</span></div><div class="feat-divider"></div><div class="feat-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span>Data stays in your browser</span></div><div class="feat-divider"></div><div class="feat-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><path d="M19 8v6M22 11h-6"/></svg><span>No account required</span></div><div class="feat-divider"></div><div class="feat-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg><span>Works on any device</span></div></div></div>
 <main class="tool-main">
@@ -362,7 +375,7 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 <div class="panel"><div style="display:flex;gap:12px;margin-bottom:20px"><div style="flex:1;position:relative"><div class="field" style="margin-bottom:0"><label>Text color</label><div style="display:flex;gap:8px;align-items:center"><div id="cc-fg-swatch" onclick="openPicker('fg')" style="width:44px;height:44px;border-radius:8px;border:1.5px solid var(--border);cursor:pointer;flex-shrink:0;background:#0d1320"></div><input type="text" id="cc-fg-hex" value="#0d1320" oninput="onHexInput('fg',this.value)" style="flex:1"></div></div><div id="cc-fg-picker" style="display:none;position:absolute;top:72px;left:0;right:0;z-index:100;background:var(--surface-2);border:1.5px solid var(--border);border-radius:12px;padding:12px"><canvas id="cc-fg-canvas" width="300" height="140" style="width:100%;border-radius:8px;cursor:crosshair;display:block;margin-bottom:10px"></canvas><canvas id="cc-fg-hue" width="300" height="16" style="width:100%;height:16px;border-radius:4px;cursor:pointer;display:block;margin-bottom:10px"></canvas><div style="display:flex;gap:8px;align-items:center"><div id="cc-fg-dot" style="width:28px;height:28px;border-radius:6px;border:1.5px solid var(--border);flex-shrink:0;background:#0d1320"></div><input id="cc-fg-phex" type="text" value="#0d1320" oninput="onPickerHex('fg',this.value)" style="flex:1;font-size:13px"><button onclick="applyPicker('fg')" style="padding:7px 12px;border-radius:7px;border:none;background:var(--accent);color:var(--accent-text);cursor:pointer;font-size:12px;font-weight:600;font-family:inherit">Apply</button></div></div></div><div style="flex:1;position:relative"><div class="field" style="margin-bottom:0"><label>Background color</label><div style="display:flex;gap:8px;align-items:center"><div id="cc-bg-swatch" onclick="openPicker('bg')" style="width:44px;height:44px;border-radius:8px;border:1.5px solid var(--border);cursor:pointer;flex-shrink:0;background:#ffffff"></div><input type="text" id="cc-bg-hex" value="#ffffff" oninput="onHexInput('bg',this.value)" style="flex:1"></div></div><div id="cc-bg-picker" style="display:none;position:absolute;top:72px;left:0;right:0;z-index:100;background:var(--surface-2);border:1.5px solid var(--border);border-radius:12px;padding:12px"><canvas id="cc-bg-canvas" width="300" height="140" style="width:100%;border-radius:8px;cursor:crosshair;display:block;margin-bottom:10px"></canvas><canvas id="cc-bg-hue" width="300" height="16" style="width:100%;height:16px;border-radius:4px;cursor:pointer;display:block;margin-bottom:10px"></canvas><div style="display:flex;gap:8px;align-items:center"><div id="cc-bg-dot" style="width:28px;height:28px;border-radius:6px;border:1.5px solid var(--border);flex-shrink:0;background:#ffffff"></div><input id="cc-bg-phex" type="text" value="#ffffff" oninput="onPickerHex('bg',this.value)" style="flex:1;font-size:13px"><button onclick="applyPicker('bg')" style="padding:7px 12px;border-radius:7px;border:none;background:var(--accent);color:var(--accent-text);cursor:pointer;font-size:12px;font-weight:600;font-family:inherit">Apply</button></div></div></div></div><div id="cc-preview-box" style="border-radius:12px;padding:24px;background:#ffffff;margin-bottom:20px;border:1.5px solid var(--border);text-align:center"><div id="cc-head" style="color:#0d1320;font-size:20px;font-weight:700;margin-bottom:6px">Sample heading text</div><div id="cc-body" style="color:#0d1320;font-size:14px">This is what body text looks like at this contrast ratio.</div></div><div class="result"><div class="big" id="cc-ratio">11.7:1</div><div class="lbl">Contrast ratio</div></div><div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:16px" id="cc-badges"></div></div>
 <article class="content"><h2>What is WCAG contrast ratio?</h2><ul class="key-points"><li>WCAG defines minimum contrast ratios to ensure text is readable by people with visual impairments.</li><li>AA is the standard legal requirement in most countries. AAA is the enhanced level.</li><li>Poor contrast is one of the most common accessibility failures on the web.</li></ul><h2>WCAG contrast requirements</h2><p>For <strong>normal text</strong> (under 18pt): AA requires 4.5:1, AAA requires 7:1.</p><p>For <strong>large text</strong> (18pt+ or 14pt+ bold): AA requires 3:1, AAA requires 4.5:1.</p><p>For <strong>UI components</strong> (buttons, inputs, icons): AA requires 3:1.</p></article>
 <section class="content"><h2>FAQ</h2><details class="faq-item"><summary>What contrast ratio do I need?<span class="faq-plus" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span></summary><p>WCAG AA requires 4.5:1 for normal text and 3:1 for large text. It is legally required in many countries for public-facing websites.</p></details><details class="faq-item"><summary>What is WCAG?<span class="faq-plus" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span></summary><p>Web Content Accessibility Guidelines — the international standard for making web content accessible to people with disabilities.</p></details><details class="faq-item"><summary>Does contrast affect SEO?<span class="faq-plus" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span></summary><p>Not directly, but poor contrast drives up bounce rates, which can indirectly affect rankings.</p></details></section>
-<section class="related"><h2>Related tools</h2><div class="related-grid"></div></section>
+<section class="related"><h2>Related tools</h2><div class="related-grid"><a href="color-picker.html">Color picker →</a><a href="qr-code-generator.html">QR code generator →</a><a href="email-signature-generator.html">Email signature generator →</a></div></section>
 </main>
 <footer class="site-footer"><div class="footer-inner"><div class="footer-brand"><div class="logo"><span class="dot"></span>Cloistr</div><p class="footer-tagline">Fast, free tools for freelancers and small businesses. Everything runs in your browser.</p></div><div class="footer-links"><div class="footer-col"><div class="footer-col-title">Company</div><a href="#">About</a><a href="#">Privacy policy</a><a href="#">Terms of use</a></div></div></div><div class="footer-bottom"><span>&copy; 2026 Cloistr. All rights reserved.</span></div></footer>
 <script>
@@ -413,5 +426,17 @@ function setTheme(mode){if(mode==='light'){document.documentElement.setAttribute
   });
 })();
 </script>
+
+(function(){
+  document.querySelectorAll('.faq-item').forEach(function(item){
+    item.addEventListener('toggle', function(){
+      if(item.open){
+        document.querySelectorAll('.faq-item').forEach(function(other){
+          if(other !== item) other.removeAttribute('open');
+        });
+      }
+    });
+  });
+})();
 </body>
 </html>

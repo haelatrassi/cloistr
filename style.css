@@ -40,7 +40,9 @@ button{font-family:inherit;cursor:pointer}
 
 h1,h2,h3,.logo,.card h3,.tool-head h1,.tool-head h2{color:var(--title)}
 
-.nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:20px;padding:14px 28px;background:var(--bg);border-bottom:1px solid var(--border)}
+.nav{position:sticky;top:0;z-index:50;display:flex;flex-direction:column;gap:0;padding:12px 28px 10px;background:var(--bg);border-bottom:1px solid var(--border)}
+.nav-top{display:flex;align-items:center;justify-content:space-between;width:100%;gap:16px}
+.nav-bottom{display:flex;align-items:center;gap:12px;width:100%;margin-top:8px}
 .logo{font-family:var(--font-display);font-weight:700;font-size:19px;letter-spacing:-.02em;display:flex;align-items:center;gap:9px}
 .logo .dot{width:11px;height:11px;border-radius:3px;background:var(--accent);display:inline-block;transform:rotate(45deg)}
 .search{flex:1;max-width:420px;margin:0 auto;display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--border);border-radius:99px;padding:9px 16px;transition:border-color .15s}
@@ -144,8 +146,7 @@ footer{border-top:1px solid var(--border);padding:32px 28px;text-align:center;co
 footer .logo{justify-content:center;margin-bottom:10px;font-size:16px}
 
 @media(max-width:640px){
-  .search{max-width:none;order:4;flex-basis:100%;margin:6px 0 0}
-  .nav{flex-wrap:wrap}
+  .nav-bottom{margin-top:6px}
   .hero{padding-top:44px}
 }
 
@@ -195,7 +196,7 @@ footer .logo{justify-content:center;margin-bottom:10px;font-size:16px}
 
 /* FOOTER */
 .site-footer{border-top:1px solid var(--border);margin-top:0}
-.footer-inner{max-width:1080px;margin:0 auto;padding:48px 28px 36px;display:flex;gap:60px;flex-wrap:wrap}
+.footer-inner{max-width:1080px;margin:0 auto;padding:48px 28px 36px;display:flex;gap:60px;flex-wrap:wrap;justify-content:space-between;align-items:flex-start}
 .footer-brand{flex:1;min-width:220px;max-width:300px}
 .footer-tagline{font-size:13px;color:var(--text-faint);line-height:1.6;margin:12px 0 0}
 .footer-links{display:flex;gap:48px;flex-wrap:wrap}

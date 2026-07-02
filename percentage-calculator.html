@@ -4,9 +4,9 @@
 <script>(function(){try{var t=localStorage.getItem("theme");if(t==="light")document.documentElement.setAttribute("data-theme","light");}catch(e){}})();</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Free Color Picker — HEX, RGB and HSL Color Codes | Cloistr</title>
-<meta name="description" content="Free online color picker. Pick any color and instantly copy its HEX, RGB and HSL codes. No signup, no install, works in any browser.">
-<link rel="canonical" href="https://cloistr.io/color-picker.html">
+<title>Free Percentage Calculator — Percent Of, Change & Difference | Cloistr</title>
+<meta name="description" content="Free percentage calculator. Calculate percent of a number, percent change, percent increase or decrease, and percent difference instantly. No signup.">
+<link rel="canonical" href="https://cloistr.io/percentage-calculator.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;450;500;600&display=swap" rel="stylesheet">
@@ -351,25 +351,11 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
   .panel{padding:20px!important}
 }
 
-.cp-canvas{width:100%;height:220px;border-radius:10px;cursor:crosshair;display:block;touch-action:none}
-.cp-hue{width:100%;height:20px;border-radius:10px;cursor:pointer;border:none;outline:none;margin:12px 0 0;display:block;background:linear-gradient(to right,#f00,#ff0,#0f0,#0ff,#00f,#f0f,#f00);touch-action:none}
-.cp-swatch{width:56px;height:56px;border-radius:10px;border:2px solid var(--border);flex-shrink:0}
-.cp-codes{display:flex;flex-direction:column;gap:8px;flex:1}
-.cp-code-row{display:flex;align-items:center;gap:8px}
-.cp-code-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text-faint);width:32px;flex-shrink:0}
-.cp-code-val{flex:1;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:13px;font-family:monospace;color:var(--text);outline:none;transition:border-color .15s}
-.cp-code-val:focus{border-color:var(--accent)}
-.cp-copy-btn{width:34px;height:34px;padding:0;border-radius:8px;border:1.5px solid var(--border);background:var(--surface-2);color:var(--text-dim);cursor:pointer;transition:all .15s;flex-shrink:0;display:flex;align-items:center;justify-content:center}
-.cp-copy-btn:hover{border-color:var(--accent);color:var(--accent)}
-.cp-copy-btn.copied{border-color:var(--accent);background:rgba(61,220,151,.12);color:var(--accent)}
-.cp-palette{display:grid;grid-template-columns:repeat(10,1fr);gap:6px;margin-top:16px}
-.cp-swatch-btn{aspect-ratio:1;border-radius:6px;border:2px solid transparent;cursor:pointer;transition:transform .12s,border-color .12s}
-.cp-swatch-btn:hover{transform:scale(1.15);border-color:var(--border-hover)}
-@media(max-width:640px){.cp-palette{grid-template-columns:repeat(8,1fr)}}
 </style>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Color picker","url":"https://cloistr.io/color-picker.html","applicationCategory":"DesignApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://cloistr.io/"},{"@type":"ListItem","position":2,"name":"Color picker","item":"https://cloistr.io/color-picker.html"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the difference between HEX, RGB and HSL?","acceptedAnswer":{"@type":"Answer","text":"HEX is a compact hexadecimal representation used in HTML and CSS. RGB defines a color by its red, green and blue components (0-255 each). HSL defines a color by hue (0-360 degrees), saturation and lightness, which is often more intuitive for designers."}},{"@type":"Question","name":"Can I type a HEX code directly?","acceptedAnswer":{"@type":"Answer","text":"Yes. Type or paste any HEX code into the HEX field and the picker, RGB and HSL values will all update automatically."}},{"@type":"Question","name":"Does this work without internet?","acceptedAnswer":{"@type":"Answer","text":"Yes. Once the page loads, everything runs locally in your browser with no server calls."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Percentage calculator","url":"https://cloistr.io/percentage-calculator.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://cloistr.io/"},{"@type":"ListItem","position":2,"name":"Percentage calculator","item":"https://cloistr.io/percentage-calculator.html"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I calculate percentage of a number?","acceptedAnswer":{"@type":"Answer","text":"Multiply the number by the percentage and divide by 100. For example, 20% of 150 is (20 \u00d7 150) \u00f7 100 = 30."}},{"@type":"Question","name":"How do I calculate percentage change?","acceptedAnswer":{"@type":"Answer","text":"Subtract the original value from the new value, divide by the original value, then multiply by 100. A positive result is an increase, a negative result is a decrease."}},{"@type":"Question","name":"What is the difference between percentage change and percentage difference?","acceptedAnswer":{"@type":"Answer","text":"Percentage change compares a new value to an original value (directional). Percentage difference compares two values without treating either as the baseline."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"How to calculate a percentage","step":[{"@type":"HowToStep","position":1,"name":"Pick a mode","text":"Choose percent of, percent change, or reverse percentage."},{"@type":"HowToStep","position":2,"name":"Enter your numbers","text":"Type the values into the input fields."},{"@type":"HowToStep","position":3,"name":"Read the result","text":"The calculation updates instantly as you type."}]}</script>
 </head>
 <body>
 <nav class="nav">
@@ -397,60 +383,70 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 <nav class="crumb" aria-label="Breadcrumb">
   <a href="/">Home</a>
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
-  <span>Color picker</span>
+  <span>Percentage calculator</span>
 </nav>
 <div class="tool-head">
-  <div class="ico i-purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="10.5" r="2.5"/><circle cx="8.5" cy="7.5" r="2.5"/><circle cx="6.5" cy="12.5" r="2.5"/><path d="M12 20c-5 0-8-4-8-8"/><circle cx="12" cy="20" r="2"/></svg></div>
-  <div><h1>Color picker</h1><p class="lead">Pick any color and copy its HEX, RGB and HSL codes instantly.</p></div>
+  <div class="ico i-teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 5 5 19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg></div>
+  <div><h1>Percentage calculator</h1><p class="lead">Percent of a number, percent change, or reverse a percentage &mdash; instantly.</p></div>
 </div>
 <div class="dyk">
   <span class="dyk-label">Did you know?</span>
-  <p>HSL (Hue, Saturation, Lightness) is often more intuitive than RGB for designers because you can easily make a color lighter or darker just by adjusting the lightness value without affecting the hue.</p>
+  <p>Percentage change and percentage difference are not the same thing. Change compares a new value to an original baseline (directional), while difference compares two values without favoring either one.</p>
 </div>
 
 <div class="panel">
-  <canvas id="cp-canvas" class="cp-canvas"></canvas>
-  <canvas id="cp-hue" class="cp-hue" height="20"></canvas>
-  <div style="display:flex;gap:14px;margin-top:16px;align-items:center">
-    <div class="cp-swatch" id="cp-swatch"></div>
-    <div class="cp-codes">
-      <div class="cp-code-row">
-        <span class="cp-code-label">HEX</span>
-        <input class="cp-code-val" id="cp-hex" value="#3ddc97" oninput="hexInput(this.value)">
-        <button class="cp-copy-btn" onclick="copyCode('cp-hex',this)" title="Copy HEX"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
-      </div>
-      <div class="cp-code-row">
-        <span class="cp-code-label">RGB</span>
-        <input class="cp-code-val" id="cp-rgb" value="rgb(61, 220, 151)" readonly>
-        <button class="cp-copy-btn" onclick="copyCode('cp-rgb',this)" title="Copy RGB"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
-      </div>
-      <div class="cp-code-row">
-        <span class="cp-code-label">HSL</span>
-        <input class="cp-code-val" id="cp-hsl" value="hsl(154, 68%, 55%)" readonly>
-        <button class="cp-copy-btn" onclick="copyCode('cp-hsl',this)" title="Copy HSL"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
-      </div>
+  <div class="field"><label>Mode</label>
+    <div class="seg" id="pc-mode">
+      <button class="on" onclick="setPcMode(0)">% of a number</button>
+      <button onclick="setPcMode(1)">% change</button>
+      <button onclick="setPcMode(2)">Reverse %</button>
     </div>
   </div>
-  <div class="cp-palette" id="cp-palette"></div>
+
+  <div id="pc-mode0">
+    <div style="display:flex;gap:12px">
+      <div class="field" style="flex:1"><label>Percentage</label><input type="number" id="pc-a0" value="20" oninput="calcPc()"></div>
+      <div class="field" style="flex:1"><label>Of value</label><input type="number" id="pc-b0" value="150" oninput="calcPc()"></div>
+    </div>
+  </div>
+
+  <div id="pc-mode1" style="display:none">
+    <div style="display:flex;gap:12px">
+      <div class="field" style="flex:1"><label>Original value</label><input type="number" id="pc-a1" value="80" oninput="calcPc()"></div>
+      <div class="field" style="flex:1"><label>New value</label><input type="number" id="pc-b1" value="100" oninput="calcPc()"></div>
+    </div>
+  </div>
+
+  <div id="pc-mode2" style="display:none">
+    <div style="display:flex;gap:12px">
+      <div class="field" style="flex:1"><label>Final price (after %)</label><input type="number" id="pc-a2" value="80" oninput="calcPc()"></div>
+      <div class="field" style="flex:1"><label>Percentage applied</label><input type="number" id="pc-b2" value="20" oninput="calcPc()"></div>
+    </div>
+  </div>
+
+  <div class="result">
+    <div class="big" id="pc-result">30</div>
+    <div class="lbl" id="pc-lbl">20% of 150</div>
+  </div>
 </div>
 
 <article class="content">
-  <h2>Color formats explained</h2>
+  <h2>The three percentage formulas</h2>
   <ul class="key-points">
-    <li><strong>HEX</strong> &mdash; compact 6-character hexadecimal code used in HTML and CSS. Example: #3ddc97.</li>
-    <li><strong>RGB</strong> &mdash; defines a color by red, green and blue channels, each from 0 to 255. Example: rgb(61, 220, 151).</li>
-    <li><strong>HSL</strong> &mdash; defines a color by hue (0&ndash;360&deg;), saturation and lightness. More intuitive for design work.</li>
+    <li><strong>Percent of a number:</strong> (percentage &times; value) &divide; 100. Example: 20% of 150 = 30.</li>
+    <li><strong>Percent change:</strong> ((new &minus; original) &divide; original) &times; 100. Example: 80 to 100 is a 25% increase.</li>
+    <li><strong>Reverse percentage:</strong> finds the original value before a percentage was applied. Example: if 80 is the price after a 20% discount, the original price was 100.</li>
   </ul>
 </article>
 
 <section class="content">
   <h2>FAQ</h2>
-  <details class="faq-item"><summary>What is the difference between HEX, RGB and HSL?<span class="faq-plus" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span></summary><p>HEX is a compact hexadecimal representation used in HTML and CSS. RGB defines a color by red, green and blue components (0&ndash;255). HSL defines a color by hue (0&ndash;360 degrees), saturation and lightness, which is more intuitive for designers.</p></details>
-  <details class="faq-item"><summary>Can I type a HEX code directly?<span class="faq-plus" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span></summary><p>Yes. Type or paste any HEX code into the HEX field and the picker, RGB and HSL values will all update automatically.</p></details>
-  <details class="faq-item"><summary>Does this work without internet?<span class="faq-plus" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span></summary><p>Yes. Once the page loads everything runs locally in your browser with no server calls.</p></details>
+  <details class="faq-item"><summary>How do I calculate percentage of a number?<span class="faq-plus" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span></summary><p>Multiply the number by the percentage and divide by 100. For example, 20% of 150 is (20 &times; 150) &divide; 100 = 30.</p></details>
+  <details class="faq-item"><summary>How do I calculate percentage change?<span class="faq-plus" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span></summary><p>Subtract the original value from the new value, divide by the original value, then multiply by 100. A positive result is an increase, a negative result is a decrease.</p></details>
+  <details class="faq-item"><summary>What is the difference between percentage change and percentage difference?<span class="faq-plus" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span></summary><p>Percentage change compares a new value to an original value (directional). Percentage difference compares two values without treating either as the baseline.</p></details>
 </section>
 
-<section class="related"><h2>Related tools</h2><div class="related-grid"><a href="contrast-checker.html">Contrast checker →</a><a href="email-signature-generator.html">Email signature generator →</a><a href="qr-code-generator.html">QR code generator →</a></div></section>
+<section class="related"><h2>Related tools</h2><div class="related-grid"><a href="vat-calculator.html">VAT calculator →</a><a href="profit-margin-calculator.html">Profit margin calculator →</a><a href="unit-converter.html">Unit converter →</a></div></section>
 </main>
 <footer class="site-footer">
   <div class="footer-inner">
@@ -472,259 +468,53 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 </footer>
 
 <script>
-var hue = 154;
-var satPct = 0.72;
-var lightPct = 0.45;
-var dragging = false;
-var hueDragging = false;
+var pcMode = 0;
 
-function hexToRgb(hex) {
-  hex = hex.replace('#', '');
-  if (hex.length === 3) hex = hex[0]+hex[0]+hex[1]+hex[1]+hex[2]+hex[2];
-  if (hex.length !== 6) return null;
-  var n = parseInt(hex, 16);
-  return { r: (n >> 16) & 255, g: (n >> 8) & 255, b: n & 255 };
+function setPcMode(m) {
+  pcMode = m;
+  document.querySelectorAll('#pc-mode button').forEach(function(b, i) { b.classList.toggle('on', i === m); });
+  document.getElementById('pc-mode0').style.display = m === 0 ? 'block' : 'none';
+  document.getElementById('pc-mode1').style.display = m === 1 ? 'block' : 'none';
+  document.getElementById('pc-mode2').style.display = m === 2 ? 'block' : 'none';
+  calcPc();
 }
 
-function rgbToHex(r, g, b) {
-  return '#' + [r, g, b].map(function(v) { return v.toString(16).padStart(2, '0'); }).join('');
-}
+function calcPc() {
+  var result, lbl;
 
-function rgbToHsl(r, g, b) {
-  r /= 255; g /= 255; b /= 255;
-  var max = Math.max(r, g, b), min = Math.min(r, g, b);
-  var h, s, l = (max + min) / 2;
-  if (max === min) { h = s = 0; }
-  else {
-    var d = max - min;
-    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-    switch(max) {
-      case r: h = ((g - b) / d + (g < b ? 6 : 0)) / 6; break;
-      case g: h = ((b - r) / d + 2) / 6; break;
-      case b: h = ((r - g) / d + 4) / 6; break;
+  if (pcMode === 0) {
+    var pct = parseFloat(document.getElementById('pc-a0').value) || 0;
+    var val = parseFloat(document.getElementById('pc-b0').value) || 0;
+    result = (pct / 100) * val;
+    lbl = pct + '% of ' + val;
+    document.getElementById('pc-result').textContent = result.toLocaleString(undefined, {maximumFractionDigits: 4});
+  } else if (pcMode === 1) {
+    var orig = parseFloat(document.getElementById('pc-a1').value) || 0;
+    var nw = parseFloat(document.getElementById('pc-b1').value) || 0;
+    if (orig === 0) {
+      result = 0;
+      lbl = 'Original value cannot be zero';
+    } else {
+      var change = ((nw - orig) / orig) * 100;
+      result = (change >= 0 ? '+' : '') + change.toFixed(2) + '%';
+      lbl = 'Change from ' + orig + ' to ' + nw;
     }
-  }
-  return { h: Math.round(h * 360), s: Math.round(s * 100), l: Math.round(l * 100) };
-}
-
-function hslToRgb(h, s, l) {
-  s /= 100; l /= 100;
-  var c = (1 - Math.abs(2 * l - 1)) * s;
-  var x = c * (1 - Math.abs((h / 60) % 2 - 1));
-  var m = l - c / 2;
-  var r, g, b;
-  if (h < 60)      { r=c; g=x; b=0; }
-  else if (h < 120){ r=x; g=c; b=0; }
-  else if (h < 180){ r=0; g=c; b=x; }
-  else if (h < 240){ r=0; g=x; b=c; }
-  else if (h < 300){ r=x; g=0; b=c; }
-  else             { r=c; g=0; b=x; }
-  return { r: Math.round((r+m)*255), g: Math.round((g+m)*255), b: Math.round((b+m)*255) };
-}
-
-function drawCanvas() {
-  var c = document.getElementById('cp-canvas');
-  var ctx = c.getContext('2d');
-  var w = c.width, h = c.height;
-  ctx.clearRect(0, 0, w, h);
-  var baseColor = 'hsl(' + hue + ',100%,50%)';
-  var gradH = ctx.createLinearGradient(0, 0, w, 0);
-  gradH.addColorStop(0, '#fff');
-  gradH.addColorStop(1, baseColor);
-  ctx.fillStyle = gradH;
-  ctx.fillRect(0, 0, w, h);
-  var gradV = ctx.createLinearGradient(0, 0, 0, h);
-  gradV.addColorStop(0, 'rgba(0,0,0,0)');
-  gradV.addColorStop(1, 'rgba(0,0,0,1)');
-  ctx.fillStyle = gradV;
-  ctx.fillRect(0, 0, w, h);
-  var cx = satPct * w;
-  var cy = (1 - lightPct) * h;
-  ctx.beginPath();
-  ctx.arc(cx, cy, 7, 0, Math.PI * 2);
-  ctx.strokeStyle = '#fff';
-  ctx.lineWidth = 2;
-  ctx.stroke();
-  ctx.beginPath();
-  ctx.arc(cx, cy, 5, 0, Math.PI * 2);
-  ctx.strokeStyle = 'rgba(0,0,0,.4)';
-  ctx.lineWidth = 1;
-  ctx.stroke();
-}
-
-function drawHueBar() {
-  var c = document.getElementById('cp-hue');
-  var ctx = c.getContext('2d');
-  c.width = c.offsetWidth;
-  ctx.clearRect(0, 0, c.width, c.height);
-  var grad = ctx.createLinearGradient(0, 0, c.width, 0);
-  [[0,'#f00'],[60,'#ff0'],[120,'#0f0'],[180,'#0ff'],[240,'#00f'],[300,'#f0f'],[360,'#f00']].forEach(function(stop){
-    grad.addColorStop(stop[0]/360, stop[1]);
-  });
-  ctx.fillStyle = grad;
-  ctx.fillRect(0, 0, c.width, c.height);
-  var x = (hue / 360) * c.width;
-  ctx.beginPath();
-  ctx.arc(x, c.height / 2, 8, 0, Math.PI * 2);
-  ctx.fillStyle = 'hsl(' + hue + ',100%,50%)';
-  ctx.fill();
-  ctx.strokeStyle = '#fff';
-  ctx.lineWidth = 2;
-  ctx.stroke();
-}
-
-function updateFromHueSat() {
-  var s = satPct * 100;
-  var l_raw = (1 - lightPct);
-  var l = (l_raw * (1 - s / 200) + s / 200) * 100;
-  var rgb = hslToRgb(hue, s, l);
-  setColor(rgb.r, rgb.g, rgb.b, false);
-}
-
-function setColor(r, g, b, updatePicker) {
-  var hex = rgbToHex(r, g, b);
-  var hsl = rgbToHsl(r, g, b);
-  document.getElementById('cp-hex').value = hex;
-  document.getElementById('cp-rgb').value = 'rgb(' + r + ', ' + g + ', ' + b + ')';
-  document.getElementById('cp-hsl').value = 'hsl(' + hsl.h + ', ' + hsl.s + '%, ' + hsl.l + '%)';
-  document.getElementById('cp-swatch').style.background = hex;
-  if (updatePicker) {
-    hue = hsl.h;
-    satPct = hsl.s / 100;
-    lightPct = 1 - (hsl.l / 100);
-    drawCanvas();
-    drawHueBar();
-  }
-}
-
-function hexInput(val) {
-  val = val.trim();
-  if (!val.startsWith('#')) val = '#' + val;
-  var rgb = hexToRgb(val);
-  if (rgb) setColor(rgb.r, rgb.g, rgb.b, true);
-}
-
-var COPY_SVG = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
-var CHECK_SVG = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
-function copyCode(id, btn) {
-  var val = document.getElementById(id).value;
-  var ta = document.createElement('textarea');
-  ta.value = val;
-  document.body.appendChild(ta);
-  ta.select();
-  document.execCommand('copy');
-  document.body.removeChild(ta);
-  btn.innerHTML = CHECK_SVG;
-  btn.classList.add('copied');
-  setTimeout(function() { btn.innerHTML = COPY_SVG; btn.classList.remove('copied'); }, 1500);
-}
-
-function buildPalette() {
-  var colors = [
-    '#e63946','#f4a261','#f9c74f','#90be6d','#43aa8b',
-    '#3ddc97','#4cc9f0','#4361ee','#7209b7','#f72585',
-    '#ffffff','#e0e0e0','#aaaaaa','#666666','#333333',
-    '#1a1a2e','#16213e','#0f3460','#533483','#2d6a4f'
-  ];
-  var palette = document.getElementById('cp-palette');
-  colors.forEach(function(c) {
-    var btn = document.createElement('button');
-    btn.className = 'cp-swatch-btn';
-    btn.style.background = c;
-    btn.setAttribute('aria-label', c);
-    btn.addEventListener('click', function() {
-      var rgb = hexToRgb(c);
-      if (rgb) {
-        hue = rgbToHsl(rgb.r, rgb.g, rgb.b).h;
-        setColor(rgb.r, rgb.g, rgb.b, true);
-        drawCanvas();
-        drawHueBar();
-      }
-    });
-    palette.appendChild(btn);
-  });
-}
-
-function getPos(e, el) {
-  var rect = el.getBoundingClientRect();
-  var clientX = e.touches ? e.touches[0].clientX : e.clientX;
-  var clientY = e.touches ? e.touches[0].clientY : e.clientY;
-  return {
-    x: Math.max(0, Math.min(1, (clientX - rect.left) / rect.width)),
-    y: Math.max(0, Math.min(1, (clientY - rect.top) / rect.height))
-  };
-}
-
-function initCanvas() {
-  var c = document.getElementById('cp-canvas');
-  c.width = c.offsetWidth;
-  c.height = c.offsetHeight;
-
-  function onMove(e) {
-    if (!dragging) return;
-    e.preventDefault();
-    var pos = getPos(e, c);
-    satPct = pos.x;
-    lightPct = 1 - pos.y;
-    drawCanvas();
-    updateFromHueSat();
+    document.getElementById('pc-result').textContent = result;
+  } else {
+    var final = parseFloat(document.getElementById('pc-a2').value) || 0;
+    var applied = parseFloat(document.getElementById('pc-b2').value) || 0;
+    if (applied >= 100) {
+      result = 0;
+      lbl = 'Percentage must be below 100%';
+    } else {
+      var original = final / (1 - applied / 100);
+      result = original.toLocaleString(undefined, {maximumFractionDigits: 2});
+      lbl = 'Original value before ' + applied + '%';
+    }
+    document.getElementById('pc-result').textContent = result;
   }
 
-  c.addEventListener('mousedown', function(e) {
-    dragging = true;
-    var pos = getPos(e, c);
-    satPct = pos.x;
-    lightPct = 1 - pos.y;
-    drawCanvas();
-    updateFromHueSat();
-  });
-  c.addEventListener('touchstart', function(e) {
-    dragging = true;
-    var pos = getPos(e, c);
-    satPct = pos.x;
-    lightPct = 1 - pos.y;
-    drawCanvas();
-    updateFromHueSat();
-  }, {passive: false});
-  document.addEventListener('mousemove', onMove);
-  document.addEventListener('touchmove', onMove, {passive: false});
-  document.addEventListener('mouseup', function() { dragging = false; });
-  document.addEventListener('touchend', function() { dragging = false; });
-}
-
-function initHue() {
-  var h = document.getElementById('cp-hue');
-
-  function onHueMove(e) {
-    if (!hueDragging) return;
-    e.preventDefault();
-    var pos = getPos(e, h);
-    hue = Math.round(pos.x * 360);
-    drawCanvas();
-    drawHueBar();
-    updateFromHueSat();
-  }
-
-  h.addEventListener('mousedown', function(e) {
-    hueDragging = true;
-    var pos = getPos(e, h);
-    hue = Math.round(pos.x * 360);
-    drawCanvas();
-    drawHueBar();
-    updateFromHueSat();
-  });
-  h.addEventListener('touchstart', function(e) {
-    hueDragging = true;
-    var pos = getPos(e, h);
-    hue = Math.round(pos.x * 360);
-    drawCanvas();
-    drawHueBar();
-    updateFromHueSat();
-  }, {passive: false});
-  document.addEventListener('mousemove', onHueMove);
-  document.addEventListener('touchmove', onHueMove, {passive: false});
-  document.addEventListener('mouseup', function() { hueDragging = false; });
-  document.addEventListener('touchend', function() { hueDragging = false; });
+  document.getElementById('pc-lbl').textContent = lbl;
 }
 
 function setTheme(mode) {
@@ -739,15 +529,33 @@ function updateThemeSwitch() {
 }
 
 (function() {
+  document.querySelectorAll('input[type=number]').forEach(function(inp) {
+    if (inp.closest('.num-wrap')) return;
+    var wrap = document.createElement('div');
+    wrap.className = 'num-wrap';
+    inp.parentNode.insertBefore(wrap, inp);
+    wrap.appendChild(inp);
+    var btns = document.createElement('div');
+    btns.className = 'num-btns';
+    var up = document.createElement('button');
+    up.className = 'num-btn'; up.type = 'button'; up.innerHTML = '▲';
+    up.addEventListener('click', function() {
+      var step = parseFloat(inp.step) || 1;
+      inp.value = (parseFloat(inp.value || 0) + step).toString();
+      inp.dispatchEvent(new Event('input'));
+    });
+    var dn = document.createElement('button');
+    dn.className = 'num-btn'; dn.type = 'button'; dn.innerHTML = '▼';
+    dn.addEventListener('click', function() {
+      var step = parseFloat(inp.step) || 1;
+      inp.value = (parseFloat(inp.value || 0) - step).toString();
+      inp.dispatchEvent(new Event('input'));
+    });
+    btns.appendChild(up); btns.appendChild(dn);
+    wrap.appendChild(btns);
+  });
   updateThemeSwitch();
-  buildPalette();
-  initCanvas();
-  initHue();
-  drawCanvas();
-  drawHueBar();
-  var rgb = hexToRgb('#3ddc97');
-  if (rgb) setColor(rgb.r, rgb.g, rgb.b, false);
-  document.getElementById('cp-swatch').style.background = '#3ddc97';
+  calcPc();
 })();
 </script>
 
